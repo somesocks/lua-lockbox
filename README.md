@@ -31,6 +31,11 @@ Block Cipher Modes:
 * OFB
 * CTR
 
+Block Cipher Padding:
+* Zero Padding
+* ANSI X.923 Padding
+* ISO/IEC 7816 Padding
+* PCKS7 Padding (PCKS5-Compatible)
 
 # Usage
 To use these cryptographic primitives in a project, you'll likely have to modify Lockbox.lua to change the module search path.  All the primitives import this module to find the packages they require.  See RunTests.lua as an example.
@@ -46,7 +51,7 @@ Most cryptographic primitives are designed in a builder-style pattern.  They usu
 For examples of how to use the different primitives, read the test case files under tests.
 
 # Security Concerns
-Several weak or broken primitives are implemented in this library, for research or legacy reasons.  These should not be used under normal circumstances!  To restrict their usage, they have been marked as insecure, with the Lockbox.insecure() method.  This will cause a failed assertion when you attempt to import the module, unless you set Lockbox.ALLOW_INSECURE to true before the import.  For an example, see RunTests.lua
+Several weak or broken primitives are implemented in this library, for research or legacy reasons.  These should not be used under normal circumstances!  To restrict their usage, they have been marked as insecure, with the Lockbox.insecure() method.  This will cause a failed assertion when you attempt to import the module, unless you set Lockbox.ALLOW_INSECURE to true before the import.  For an example, see RunTests.lua.
 
 # Planned Updates
 * 3DES
