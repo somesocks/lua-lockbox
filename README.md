@@ -35,7 +35,7 @@ Block Cipher Padding:
 * Zero Padding
 * ANSI X.923 Padding
 * ISO/IEC 7816 Padding
-* PCKS7 Padding (PCKS5-Compatible)
+* PKCS7 Padding (PKCS5-Compatible)
 
 # Usage
 To use these cryptographic primitives in a project, you'll likely have to modify Lockbox.lua to change the module search path.  All the primitives import this module to find the packages they require.  See RunTests.lua as an example.
