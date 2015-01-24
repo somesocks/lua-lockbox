@@ -1,6 +1,6 @@
 local Stream = require("Stream");
 
-local PCKS7Padding = function(blockSize,byteCount)
+local PKCS7Padding = function(blockSize,byteCount)
 
 	local paddingCount = blockSize - ((byteCount -1) % blockSize) + 1;
 	local bytesLeft = paddingCount;
@@ -17,4 +17,4 @@ local PCKS7Padding = function(blockSize,byteCount)
 	return stream;
 end
 
-return PCKS7Padding;
+return PKCS7Padding;

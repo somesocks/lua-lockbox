@@ -7,7 +7,7 @@ local ECBMode = require("ECBMode");
 
 local CBCMode = require("CBCMode");
 
-local PCKS7Padding = require("PCKS7Padding");
+local PKCS7Padding = require("PKCS7Padding");
 local ZeroPadding = require("ZeroPadding");
 
 local DESCipher = require("DESCipher");
@@ -79,7 +79,7 @@ local testVectors = {
 		key = Array.fromString("12345678"),
 		plaintext = Stream.fromString("abcdefghThis is the message to encrypt!!"),
 		ciphertext = String.upper("6ca9470c849d1cc1a59ffc148f1cb5e9cf1f5c0328a7e8756387ff4d0fe46050"),
-		padding = PCKS7Padding
+		padding = PKCS7Padding
 	},
 
 };

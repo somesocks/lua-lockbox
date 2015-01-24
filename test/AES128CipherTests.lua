@@ -9,7 +9,7 @@ local CFBMode = require("CFBMode");
 local OFBMode = require("OFBMode");
 local CTRMode = require("CTRMode");
 
-local PCKS7Padding = require("PCKS7Padding");
+local PKCS7Padding = require("PKCS7Padding");
 local ZeroPadding = require("ZeroPadding");
 
 local AES128Cipher = require("AES128Cipher");
