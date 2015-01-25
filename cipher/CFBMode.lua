@@ -129,7 +129,7 @@ CFB.Decipher = function()
 					iv = block;
 				else
 					local out = iv;
-					out = blockCipher.decrypt(key,out);
+					out = blockCipher.encrypt(key,out);
 					out = Array.XOR(out,block);
 					Array.writeToQueue(outputQueue,out);
 					iv = block;

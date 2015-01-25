@@ -189,4 +189,22 @@ Array.permute = function(input,pbox)
 	return out;
 end
 
+Array.copy = function(input)
+	local out = {};
+
+	for k,v in pairs(input) do
+		out[k] = v;
+	end
+	return out;
+end
+
+Array.slice = function(input,start,stop)
+	local out = {};
+
+	for i=start,stop do
+		out[i-start+1] = input[i];
+	end
+	return out;
+end
+
 return Array;

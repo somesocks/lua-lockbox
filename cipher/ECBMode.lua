@@ -112,12 +112,12 @@ ECB.Decipher = function()
 
 	public.update = function(messageStream)
 		local byte = messageStream();
-		while byte ~= nil do
+		while (byte ~= nil) do
 			inputQueue.push(byte);
 			if(inputQueue.size() >= blockCipher.blockSize) then
 				local block = Array.readFromQueue(inputQueue,blockCipher.blockSize);
-
-				block = blockCipher.decrypt(keyBytes,block);
+				
+				block = blockCipher.decrypt(key,block);
 				
 				Array.writeToQueue(outputQueue,block);
 			end
