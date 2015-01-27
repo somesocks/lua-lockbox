@@ -17,6 +17,7 @@ local tests = {
 	"DESCipherTests",
 	"AES128CipherTests",
 	"AES192CipherTests",
+	"AES256CipherTests",
 	};
 
 for k,v in pairs(tests) do

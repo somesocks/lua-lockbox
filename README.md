@@ -23,6 +23,7 @@ Block Ciphers:
 * DES
 * AES128
 * AES192
+* AES256
 
 Block Cipher Modes:
 * ECB
@@ -56,7 +57,6 @@ Several weak or broken primitives are implemented in this library, for research 
 
 # Planned Updates
 * 3DES
-* AES256
 * SHA3(Keccak)
 * MD6
 * BLAKE2s

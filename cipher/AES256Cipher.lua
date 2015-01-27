@@ -235,38 +235,49 @@ local mixCol = function(i,mix)
 end
 
 local keyRound = function(key,round)
-	local i=(round-1)*24;
+	local i=(round-1)*32;
 	local out=key;
 
-	out[25+i] = XOR(key[ 1+i],XOR(SBOX[key[22+i]],RCON[round]));
-	out[26+i] = XOR(key[ 2+i],SBOX[key[23+i]]);
-	out[27+i] = XOR(key[ 3+i],SBOX[key[24+i]]);
-	out[28+i] = XOR(key[ 4+i],SBOX[key[21+i]]);
+	out[33+i] = XOR(key[ 1+i],XOR(SBOX[key[30+i]],RCON[round]));
+	out[34+i] = XOR(key[ 2+i],SBOX[key[31+i]]);
+	out[35+i] = XOR(key[ 3+i],SBOX[key[32+i]]);
+	out[36+i] = XOR(key[ 4+i],SBOX[key[29+i]]);
 
-	out[29+i] = XOR(out[25+i],key[ 5+i]);
-	out[30+i] = XOR(out[26+i],key[ 6+i]);
-	out[31+i] = XOR(out[27+i],key[ 7+i]);
-	out[32+i] = XOR(out[28+i],key[ 8+i]);
+	out[37+i] = XOR(out[33+i],key[ 5+i]);
+	out[38+i] = XOR(out[34+i],key[ 6+i]);
+	out[39+i] = XOR(out[35+i],key[ 7+i]);
+	out[40+i] = XOR(out[36+i],key[ 8+i]);
 
-	out[33+i] = XOR(out[29+i],key[ 9+i]);
-	out[34+i] = XOR(out[30+i],key[10+i]);
-	out[35+i] = XOR(out[31+i],key[11+i]);
-	out[36+i] = XOR(out[32+i],key[12+i]);
+	out[41+i] = XOR(out[37+i],key[ 9+i]);
+	out[42+i] = XOR(out[38+i],key[10+i]);
+	out[43+i] = XOR(out[39+i],key[11+i]);
+	out[44+i] = XOR(out[40+i],key[12+i]);
 
-	out[37+i] = XOR(out[33+i],key[13+i]);
-	out[38+i] = XOR(out[34+i],key[14+i]);
-	out[39+i] = XOR(out[35+i],key[15+i]);
-	out[40+i] = XOR(out[36+i],key[16+i]);
+	out[45+i] = XOR(out[41+i],key[13+i]);
+	out[46+i] = XOR(out[42+i],key[14+i]);
+	out[47+i] = XOR(out[43+i],key[15+i]);
+	out[48+i] = XOR(out[44+i],key[16+i]);
 
-	out[41+i] = XOR(out[37+i],key[17+i]);
-	out[42+i] = XOR(out[38+i],key[18+i]);
-	out[43+i] = XOR(out[39+i],key[19+i]);
-	out[44+i] = XOR(out[40+i],key[20+i]);
 
-	out[45+i] = XOR(out[41+i],key[21+i]);
-	out[46+i] = XOR(out[42+i],key[22+i]);
-	out[47+i] = XOR(out[43+i],key[23+i]);
-	out[48+i] = XOR(out[44+i],key[24+i]);
+	out[49+i] = XOR(SBOX[out[45+i]],key[17+i]);
+	out[50+i] = XOR(SBOX[out[46+i]],key[18+i]);
+	out[51+i] = XOR(SBOX[out[47+i]],key[19+i]);
+	out[52+i] = XOR(SBOX[out[48+i]],key[20+i]);
+
+	out[53+i] = XOR(out[49+i],key[21+i]);
+	out[54+i] = XOR(out[50+i],key[22+i]);
+	out[55+i] = XOR(out[51+i],key[23+i]);
+	out[56+i] = XOR(out[52+i],key[24+i]);
+
+	out[57+i] = XOR(out[53+i],key[25+i]);
+	out[58+i] = XOR(out[54+i],key[26+i]);
+	out[59+i] = XOR(out[55+i],key[27+i]);
+	out[60+i] = XOR(out[56+i],key[28+i]);
+
+	out[61+i] = XOR(out[57+i],key[29+i]);
+	out[62+i] = XOR(out[58+i],key[30+i]);
+	out[63+i] = XOR(out[59+i],key[31+i]);
+	out[64+i] = XOR(out[60+i],key[32+i]);
 
 	return out;
 end
@@ -274,7 +285,7 @@ end
 local keyExpand = function(key)
 	local bytes = Array.copy(key);
 
-	for i=1,8 do
+	for i=1,7 do
 		keyRound(bytes,i);
 	end
 
@@ -293,6 +304,8 @@ local keyExpand = function(key)
 	keys[11] = Array.slice(bytes,161,176);
 	keys[12] = Array.slice(bytes,177,192);
 	keys[13] = Array.slice(bytes,193,208);
+	keys[14] = Array.slice(bytes,209,224);
+	keys[15] = Array.slice(bytes,225,240);
 
 	return keys;
 
@@ -382,8 +395,20 @@ AES.encrypt = function(key,block)
 	--round 12
 	block = byteSub(block,SBOX);
 	block = shiftRow(block,ROW_SHIFT);
+	block = mixCol(block,MIXTABLE);
 	block = addKey(block,key[13]);
-	
+
+	--round 13
+	block = byteSub(block,SBOX);
+	block = shiftRow(block,ROW_SHIFT);
+	block = mixCol(block,MIXTABLE);
+	block = addKey(block,key[14]);
+
+	--round 14
+	block = byteSub(block,SBOX);
+	block = shiftRow(block,ROW_SHIFT);
+	block = addKey(block,key[15]);
+
 	return block;
 	
 end
@@ -393,75 +418,87 @@ AES.decrypt = function(key,block)
 	local key = keyExpand(key);
 
 	--round 0
-	block = addKey(block,key[13]);
+	block = addKey(block,key[15]);
 
 	--round 1
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[12]);			
+	block = addKey(block,key[14]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 2
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[11]);			
+	block = addKey(block,key[13]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 3
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[10]);			
+	block = addKey(block,key[12]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 4
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[9]);			
+	block = addKey(block,key[11]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 5
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[8]);			
+	block = addKey(block,key[10]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 6
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[7]);			
+	block = addKey(block,key[9]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 7
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[6]);			
+	block = addKey(block,key[8]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 8
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[5]);			
+	block = addKey(block,key[7]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 9
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[4]);			
+	block = addKey(block,key[6]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 10
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[3]);			
+	block = addKey(block,key[5]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 11
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
-	block = addKey(block,key[2]);			
+	block = addKey(block,key[4]);			
 	block = mixCol(block,IMIXTABLE);
 
 	--round 12
+	block = shiftRow(block,IROW_SHIFT);
+	block = byteSub(block,ISBOX);
+	block = addKey(block,key[3]);			
+	block = mixCol(block,IMIXTABLE);
+
+	--round 13
+	block = shiftRow(block,IROW_SHIFT);
+	block = byteSub(block,ISBOX);
+	block = addKey(block,key[2]);			
+	block = mixCol(block,IMIXTABLE);
+
+	--round 14
 	block = shiftRow(block,IROW_SHIFT);
 	block = byteSub(block,ISBOX);
 	block = addKey(block,key[1]);			
