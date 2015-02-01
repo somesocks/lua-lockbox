@@ -4,6 +4,7 @@ local Lockbox = require("Lockbox");
 Lockbox.ALLOW_INSECURE = true;
 
 local tests = {
+	"Base64Tests",
 	"MD2Tests",
 	"MD4Tests",
 	"MD5Tests",
