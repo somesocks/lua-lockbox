@@ -21,6 +21,7 @@ Key Derivation Functions (KDFs):
 
 Block Ciphers:
 * DES
+* DES3
 * AES128
 * AES192
 * AES256
@@ -56,7 +57,6 @@ For examples of how to use the different primitives, read the test case files un
 Several weak or broken primitives are implemented in this library, for research or legacy reasons.  These should not be used under normal circumstances!  To restrict their usage, they have been marked as insecure, with the Lockbox.insecure() method.  This will cause a failed assertion when you attempt to import the module, unless you set Lockbox.ALLOW_INSECURE to true before the import.  For an example, see RunTests.lua.
 
 # Planned Updates
-* 3DES
 * RC4
 * TEA / XTEA / XXTEA
 * SHA3(Keccak)

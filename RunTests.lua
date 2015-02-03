@@ -16,6 +16,7 @@ local tests = {
 	"HMACTests",
 	"PBKDF2Tests",
 	"DESCipherTests",
+	"DES3CipherTests",
 	"AES128CipherTests",
 	"AES192CipherTests",
 	"AES256CipherTests",
