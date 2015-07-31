@@ -3,6 +3,7 @@ require("Lockbox").insecure();
 local Bit = require("bit32");
 local String = require("string");
 local Queue = require("Queue");
+local Math = require("math");
 
 local SHIFT = {	7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22, 
 				5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20, 
@@ -60,7 +61,7 @@ local bytes2dword = function(b0,b1,b2,b3,b4,b5,b6,b7)
 end
 
 local dword2bytes = function(i)
-	local b4,b5,b6,b7 = word2bytes(i/0x100000000);
+	local b4,b5,b6,b7 = word2bytes(Math.floor(i/0x100000000));
 	local b0,b1,b2,b3 = word2bytes(i);
 	return b0,b1,b2,b3,b4,b5,b6,b7;
 end 

@@ -1,6 +1,7 @@
 local Bit = require("bit32");
 local String = require("string");
 local Queue = require("Queue");
+local Math = require("math");
 
 local CONSTANTS = {
    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
@@ -47,7 +48,7 @@ end
 
 local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(i);
-	local b0,b1,b2,b3 = word2bytes(i/0x100000000);
+	local b0,b1,b2,b3 = word2bytes(Math.floor(i/0x100000000));
 	return b0,b1,b2,b3,b4,b5,b6,b7;
 end 
 
