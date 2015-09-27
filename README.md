@@ -25,6 +25,7 @@ Block Ciphers:
 * AES128
 * AES192
 * AES256
+* TEA
 
 Block Cipher Modes:
 * ECB
@@ -58,7 +59,7 @@ Several weak or broken primitives are implemented in this library, for research 
 
 # Planned Updates
 * RC4
-* TEA / XTEA / XXTEA
+* XTEA / XXTEA
 * SHA3(Keccak)
 * MD6
 * BLAKE2s
