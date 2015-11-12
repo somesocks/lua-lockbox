@@ -1,5 +1,5 @@
-local Stream = require("Stream");
-local Digest = require("SHA1");
+local Stream = require("lockbox.util.stream");
+local Digest = require("lockbox.digest.sha1");
 local String = require("string");
 
 local test = {};

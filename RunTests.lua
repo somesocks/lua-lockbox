@@ -1,5 +1,5 @@
 local String = require("string");
-local Lockbox = require("Lockbox");
+local Lockbox = require("lockbox");
 
 Lockbox.ALLOW_INSECURE = true;
 
@@ -24,7 +24,7 @@ local tests = {
 
 for k,v in pairs(tests) do
 	print(String.format("Running %s...",v));
-	require(v);
+	require("test."..v);
 	print(String.format("%s passed!\n",v));
 end
 

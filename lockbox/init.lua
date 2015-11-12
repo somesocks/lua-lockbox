@@ -1,5 +1,6 @@
 local Lockbox = {};
 
+--[[
 package.path =  "./?.lua;"
 				.. "./cipher/?.lua;"
 				.. "./digest/?.lua;"
@@ -9,7 +10,7 @@ package.path =  "./?.lua;"
 				.. "./test/?.lua;"
 				.. "./util/?.lua;"
 				.. package.path;
-
+]]--
 Lockbox.ALLOW_INSECURE = false;
 
 Lockbox.insecure = function()
