@@ -1,7 +1,7 @@
 local Bit = require("bit32");
 local String = require("string");
-local Stream = require("Stream");
-local Array = require("Array");
+local Stream = require("lockbox.util.stream");
+local Array = require("lockbox.util.array");
 
 local XOR = Bit.bxor;
 

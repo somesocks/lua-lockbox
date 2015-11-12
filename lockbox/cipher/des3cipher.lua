@@ -1,8 +1,8 @@
-require("Lockbox").insecure();
+require("lockbox").insecure();
 
-local Array = require("Array");
+local Array = require("lockbox.util.array");
 
-local DES = require("DESCipher");
+local DES = require("lockbox.cipher.descipher");
 
 local DES3 = {};
 

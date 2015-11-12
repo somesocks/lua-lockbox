@@ -1,6 +1,6 @@
 local Bit = require("bit32");
 local String = require("string");
-local Queue = require("Queue");
+local Queue = require("lockbox.util.queue");
 
 local CONSTANTS = {
    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,

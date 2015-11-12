@@ -1,5 +1,5 @@
-local Stream = require("Stream");
-local Array = require("Array");
+local Stream = require("lockbox.util.stream");
+local Array = require("lockbox.util.array");
 
 local Bit = require("bit32");
 local Math = require("math");

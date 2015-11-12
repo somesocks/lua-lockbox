@@ -1,8 +1,8 @@
-require("Lockbox").insecure();
+require("lockbox").insecure();
 
-local Array = require("Array");
-local Stream = require("Stream");
-local Queue = require("Queue");
+local Array = require("lockbox.util.array");
+local Stream = require("lockbox.util.stream");
+local Queue = require("lockbox.util.queue");
 
 local String = require("string");
 local Bit = require("bit32");

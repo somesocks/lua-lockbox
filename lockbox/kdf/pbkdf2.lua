@@ -1,7 +1,7 @@
 local Bit = require("bit32");
 local String = require("string");
-local Array = require("Array");
-local Stream = require("Stream");
+local Array = require("lockbox.util.array");
+local Stream = require("lockbox.util.stream");
 local Math = require("math");
 
 local AND = Bit.band;

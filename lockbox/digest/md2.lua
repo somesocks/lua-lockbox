@@ -1,8 +1,8 @@
-require("Lockbox").insecure();
+require("lockbox").insecure();
 
 local Bit = require("bit32");
 local String = require("string");
-local Queue = require("Queue");
+local Queue = require("lockbox.util.queue");
 
 local SUBST = { 
   0x29, 0x2E, 0x43, 0xC9, 0xA2, 0xD8, 0x7C, 0x01, 0x3D, 0x36, 0x54, 0xA1, 0xEC, 0xF0, 0x06, 0x13, 

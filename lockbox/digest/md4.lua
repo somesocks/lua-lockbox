@@ -1,8 +1,8 @@
-require("Lockbox").insecure();
+require("lockbox").insecure();
 
 local Bit = require("bit32");
 local String = require("string");
-local Queue = require("Queue");
+local Queue = require("lockbox.util.queue");
 
 local SHIFT = {	3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19, 
 				3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13, 

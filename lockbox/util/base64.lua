@@ -1,8 +1,8 @@
 local String = require("string");
 local Bit = require("bit32");
 
-local Array = require("Array");
-local Stream = require("Stream");
+local Array = require("lockbox.util.array");
+local Stream = require("lockbox.util.stream");
 
 local AND = Bit.band;
 local OR  = Bit.bor;

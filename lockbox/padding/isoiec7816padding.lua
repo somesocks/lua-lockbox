@@ -1,4 +1,4 @@
-local Stream = require("Stream");
+local Stream = require("lockbox.util.stream");
 
 
 local ISOIEC7816Padding = function(blockSize,byteCount)

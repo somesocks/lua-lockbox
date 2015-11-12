@@ -1,8 +1,8 @@
-require("Lockbox").insecure();
+require("lockbox").insecure();
 
 local Bit = require("bit32");
 local String = require("string");
-local Queue = require("Queue");
+local Queue = require("lockbox.util.queue");
 
 local AND = Bit.band;
 local OR  = Bit.bor;

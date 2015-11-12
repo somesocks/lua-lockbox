@@ -1,4 +1,4 @@
-local Queue = require("Queue");
+local Queue = require("lockbox.util.queue");
 local String = require("string");
 
 local Stream = {};
