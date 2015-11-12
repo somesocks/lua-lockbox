@@ -2,7 +2,7 @@ require("lockbox").insecure();
 
 local Array = require("lockbox.util.array");
 
-local DES = require("lockbox.cipher.descipher");
+local DES = require("lockbox.cipher.des");
 
 local DES3 = {};
 
