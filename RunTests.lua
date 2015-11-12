@@ -26,7 +26,15 @@ local tests = {
 
 for k,v in pairs(tests) do
 	print(String.format("Running %s...",v));
-	require("test."..v);
-	print(String.format("%s passed!\n",v));
+	local ok, err = pcall(
+	function()
+		require("test."..v)
+	end
+	);
+	if not ok then
+		print(String.format("FAIL: %s failed with error:\n%s\n", v, err));
+	else
+		print(String.format("%s passed!\n",v));
+	end
 end
 
