@@ -1,18 +1,18 @@
 local String = require("string");
 
-local Array = require("Array");
-local Stream = require("Stream");
+local Array = require("lockbox.util.array");
+local Stream = require("lockbox.util.stream");
 
-local ECBMode = require("ECBMode");
-local CBCMode = require("CBCMode");
-local CFBMode = require("CFBMode");
-local OFBMode = require("OFBMode");
-local CTRMode = require("CTRMode");
+local ECBMode = require("lockbox.cipher.mode.ecb");
+local CBCMode = require("lockbox.cipher.mode.cbc");
+local CFBMode = require("lockbox.cipher.mode.cfb");
+local OFBMode = require("lockbox.cipher.mode.ofb");
+local CTRMode = require("lockbox.cipher.mode.ctr");
 
-local PKCS7Padding = require("PKCS7Padding");
-local ZeroPadding = require("ZeroPadding");
+local PKCS7Padding = require("lockbox.padding.pkcs7");
+local ZeroPadding = require("lockbox.padding.zero");
 
-local AES256Cipher = require("AES256Cipher");
+local AES256Cipher = require("lockbox.cipher.aes256");
 
 
 local testVectors = {

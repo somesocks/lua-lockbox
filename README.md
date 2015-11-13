@@ -58,6 +58,40 @@ For examples of how to use the different primitives, read the test case files un
 # Security Concerns
 Several weak or broken primitives are implemented in this library, for research or legacy reasons.  These should not be used under normal circumstances!  To restrict their usage, they have been marked as insecure, with the Lockbox.insecure() method.  This will cause a failed assertion when you attempt to import the module, unless you set Lockbox.ALLOW_INSECURE to true before the import.  For an example, see RunTests.lua.
 
+# Modules names
+
+ * `lockbox` (or `lockbox.init`)
+ * `lockbox.cipher.aes128`
+ * `lockbox.cipher.aes192`
+ * `lockbox.cipher.aes256`
+ * `lockbox.cipher.des3`
+ * `lockbox.cipher.des`
+ * `lockbox.cipher.mode.cbc`
+ * `lockbox.cipher.mode.cfb`
+ * `lockbox.cipher.mode.ctr`
+ * `lockbox.cipher.mode.ecb`
+ * `lockbox.cipher.mode.ofb`
+ * `lockbox.cipher.mode.pcbc`
+ * `lockbox.digest.md2`
+ * `lockbox.digest.md4`
+ * `lockbox.digest.md5`
+ * `lockbox.digest.ripemd128`
+ * `lockbox.digest.ripemd160`
+ * `lockbox.digest.sha1`
+ * `lockbox.digest.sha2_224`
+ * `lockbox.digest.sha2_256`
+ * `lockbox.kdf.pbkdf2`
+ * `lockbox.mac.hmac`
+ * `lockbox.padding.ansix923`
+ * `lockbox.padding.isoiec7816`
+ * `lockbox.padding.pkcs7`
+ * `lockbox.padding.zero`
+ * `lockbox.util.base64`
+ * `lockbox.util.array`
+ * `lockbox.util.bit`
+ * `lockbox.util.queue`
+ * `lockbox.util.stream`
+
 # Planned Updates
 * RC4
 * XXTEA

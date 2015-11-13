@@ -1,7 +1,7 @@
 local String = require("string");
-local Array = require("Array");
-local Stream = require("Stream");
-local Base64 = require("Base64");
+local Array = require("lockbox.util.array");
+local Stream = require("lockbox.util.stream");
+local Base64 = require("lockbox.util.base64");
 
 local test_vectors = {
 	{

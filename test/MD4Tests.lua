@@ -1,5 +1,5 @@
-local Stream = require("Stream");
-local Digest = require("MD4");
+local Stream = require("lockbox.util.stream");
+local Digest = require("lockbox.digest.md4");
 local String = require("string");
 
 local test = {};

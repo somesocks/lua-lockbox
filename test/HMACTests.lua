@@ -1,16 +1,16 @@
 local Bit = require("bit32");
 local String = require("string");
-local Stream = require("Stream");
-local Array = require("Array");
+local Stream = require("lockbox.util.stream");
+local Array = require("lockbox.util.array");
 
-local Queue = require("Queue");
+local Queue = require("lockbox.util.queue");
 
-local HMAC = require("HMAC");
+local HMAC = require("lockbox.mac.hmac");
 
-local MD5 = require("MD5");
-local SHA1 = require("SHA1");
-local SHA2_224 = require("SHA2_224");
-local SHA2_256 = require("SHA2_256");
+local MD5 = require("lockbox.digest.md5");
+local SHA1 = require("lockbox.digest.sha1");
+local SHA2_224 = require("lockbox.digest.sha2_224");
+local SHA2_256 = require("lockbox.digest.sha2_256");
 
 local tests = {
 	{	digest = MD5,

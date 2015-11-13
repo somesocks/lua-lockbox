@@ -1,5 +1,5 @@
-local Stream = require("Stream");
-local Digest = require("RIPEMD128");
+local Stream = require("lockbox.util.stream");
+local Digest = require("lockbox.digest.ripemd128");
 local String = require("string");
 
 local test = {};
