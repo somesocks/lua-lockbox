@@ -5,7 +5,7 @@ local Stream = require("lockbox.util.stream");
 local Queue = require("lockbox.util.queue");
 
 local String = require("string");
-local Bit = require("bit32");
+local Bit = require("lockbox.util.bit");
 
 local ECB = {};
 

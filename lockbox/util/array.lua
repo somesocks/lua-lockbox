@@ -1,6 +1,6 @@
 
 local String = require("string");
-local Bit = require("bit32");
+local Bit = require("lockbox.util.bit");
 
 local XOR = Bit.bxor;
 

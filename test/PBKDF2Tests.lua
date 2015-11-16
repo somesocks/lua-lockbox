@@ -2,7 +2,7 @@ local PBKDF2 = require("lockbox.kdf.pbkdf2");
 local HMAC = require("lockbox.mac.hmac");
 local SHA1 = require("lockbox.digest.sha1");
 
-local Bit = require("bit32");
+local Bit = require("lockbox.util.bit");
 local String = require("string");
 local Stream = require("lockbox.util.stream");
 local Array = require("lockbox.util.array");
