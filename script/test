@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+# Go to the project's root directory.
+cd "$(dirname "$0")/.."
+
+script/bootstrap
+
+echo -e '\n==> Running tests...'
+lua RunTests.lua
