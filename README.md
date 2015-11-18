@@ -1,4 +1,7 @@
 # The Lua Lockbox
+
+[![Build Status](https://travis-ci.org/somesocks/lua-lockbox.svg?branch=master)](https://travis-ci.org/somesocks/lua-lockbox)
+
 A collection of cryptographic primitives and protocols written in pure Lua.  This was written to provide cross-platform, tested reference implementations of many different cryptographic primitives.  These are written to be easy to read and easy to use, not for performance!
 
 # Implemented Primitives
