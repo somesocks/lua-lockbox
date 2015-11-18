@@ -1,0 +1,13 @@
+sudo: false
+env:
+  - LUA_VERSION='lua-5.2'
+  - LUA_VERSION='lua-5.3'
+  - LUA_VERSION='luajit-2.0'
+matrix:
+  allow_failures:
+    - env: LUA_VERSION='lua-5.3'
+install:
+  - script/bootstrap
+  - source .envrc
+script:
+  - script/test

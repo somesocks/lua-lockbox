@@ -24,6 +24,8 @@ local tests = {
 	"XTEACipherTests",
 	};
 
+local status = 0
+
 for k,v in pairs(tests) do
 	print(String.format("Running %s...",v));
 	local ok, err = pcall(
@@ -33,8 +35,10 @@ for k,v in pairs(tests) do
 	);
 	if not ok then
 		print(String.format("FAIL: %s failed with error:\n%s\n", v, err));
+		status = 1
 	else
 		print(String.format("%s passed!\n",v));
 	end
 end
 
+os.exit(status)
