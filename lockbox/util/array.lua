@@ -7,7 +7,7 @@ local XOR = Bit.bxor;
 local Array = {};
 
 Array.size = function(array)
-	return table.maxn(array);
+	return #array;
 end
 
 Array.fromString = function(string)
