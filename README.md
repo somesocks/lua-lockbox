@@ -38,6 +38,7 @@ Block Cipher Modes:
 * CFB
 * OFB
 * CTR
+* IGE
 
 Block Cipher Padding:
 * Zero Padding
@@ -73,6 +74,7 @@ Several weak or broken primitives are implemented in this library, for research 
  * `lockbox.cipher.mode.cfb`
  * `lockbox.cipher.mode.ctr`
  * `lockbox.cipher.mode.ecb`
+ * `lockbox.cipher.mode.ige`
  * `lockbox.cipher.mode.ofb`
  * `lockbox.cipher.mode.pcbc`
  * `lockbox.digest.md2`
