@@ -15,7 +15,7 @@ for k,v in pairs(test) do
 	local actual = Digest()
 					.update(Stream.fromString(k))
 					.finish()
-					.asHex(); 
+					.asHex();
 
 	assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)",message,expected,actual));
 

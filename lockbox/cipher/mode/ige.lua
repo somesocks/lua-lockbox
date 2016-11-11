@@ -75,8 +75,8 @@ IGE.Cipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end
@@ -157,8 +157,8 @@ IGE.Decipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end

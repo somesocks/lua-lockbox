@@ -38,7 +38,7 @@ Array.toString = function(bytes)
 
 	return table.concat(chars,"");
 end
-	
+
 Array.fromStream = function(stream)
 	local array = {};
 	local i=1;
@@ -82,7 +82,7 @@ Array.toStream = function(array)
 		byte = array[i];
 	end
 
-	return queue.pop;	
+	return queue.pop;
 end
 
 
@@ -90,7 +90,7 @@ local fromHexTable = {};
 for i=0,255 do
 	fromHexTable[String.format("%02X",i)]=i;
 	fromHexTable[String.format("%02x",i)]=i;
-end 
+end
 
 Array.fromHex = function(hex)
 	local array = {};
@@ -98,8 +98,8 @@ Array.fromHex = function(hex)
 	for i=1,String.len(hex)/2 do
 		local h = String.sub(hex,i*2-1,i*2);
 		array[i] = fromHexTable[h];
-	end		
-	
+	end
+
 	return array;
 end
 

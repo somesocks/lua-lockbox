@@ -43,7 +43,7 @@ local testVectors = {
 		plaintext = Array.fromHex("30c81c46a35ce411e5fbc1191a0a52ef"),
 		ciphertext = Array.fromHex("43b1cd7f598ece23881b00e3ed030688"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = ECBMode.Cipher,
 		decipher = ECBMode.Decipher,
@@ -52,7 +52,7 @@ local testVectors = {
 		plaintext = Array.fromHex("f69f2445df4f9b17ad2b417be66c3710"),
 		ciphertext = Array.fromHex("7b0c785e27e8ad3f8223207104725dd4"),
 		padding = ZeroPadding
-	},	
+	},
 
 
 	{
@@ -63,7 +63,7 @@ local testVectors = {
 		plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172a"),
 		ciphertext = Array.fromHex("7649abac8119b246cee98e9b12e9197d"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CBCMode.Cipher,
 		decipher = CBCMode.Decipher,
@@ -72,7 +72,7 @@ local testVectors = {
 		plaintext = Array.fromHex("ae2d8a571e03ac9c9eb76fac45af8e51"),
 		ciphertext = Array.fromHex("5086cb9b507219ee95db113a917678b2"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CBCMode.Cipher,
 		decipher = CBCMode.Decipher,
@@ -81,7 +81,7 @@ local testVectors = {
 		plaintext = Array.fromHex("30c81c46a35ce411e5fbc1191a0a52ef"),
 		ciphertext = Array.fromHex("73bed6b8e3c1743b7116e69e22229516"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CBCMode.Cipher,
 		decipher = CBCMode.Decipher,
@@ -90,7 +90,7 @@ local testVectors = {
 		plaintext = Array.fromHex("f69f2445df4f9b17ad2b417be66c3710"),
 		ciphertext = Array.fromHex("3ff1caa1681fac09120eca307586e1a7"),
 		padding = ZeroPadding
-	},	
+	},
 
 
 	{
@@ -101,7 +101,7 @@ local testVectors = {
 		plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172a"),
 		ciphertext = Array.fromHex("3b3fd92eb72dad20333449f8e83cfb4a"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CFBMode.Cipher,
 		decipher = CFBMode.Decipher,
@@ -110,7 +110,7 @@ local testVectors = {
 		plaintext = Array.fromHex("ae2d8a571e03ac9c9eb76fac45af8e51"),
 		ciphertext = Array.fromHex("c8a64537a0b3a93fcde3cdad9f1ce58b"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CFBMode.Cipher,
 		decipher = CFBMode.Decipher,
@@ -119,7 +119,7 @@ local testVectors = {
 		plaintext = Array.fromHex("30c81c46a35ce411e5fbc1191a0a52ef"),
 		ciphertext = Array.fromHex("26751f67a3cbb140b1808cf187a4f4df"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CFBMode.Cipher,
 		decipher = CFBMode.Decipher,
@@ -128,7 +128,7 @@ local testVectors = {
 		plaintext = Array.fromHex("f69f2445df4f9b17ad2b417be66c3710"),
 		ciphertext = Array.fromHex("c04b05357c5d1c0eeac4c66f9ff7f2e6"),
 		padding = ZeroPadding
-	},	
+	},
 
 	{
 		cipher = OFBMode.Cipher,

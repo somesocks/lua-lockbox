@@ -46,9 +46,9 @@ ECB.Cipher = function()
 			inputQueue.push(byte);
 			if(inputQueue.size() >= blockCipher.blockSize) then
 				local block = Array.readFromQueue(inputQueue,blockCipher.blockSize);
-				
+
 				block = blockCipher.encrypt(key,block);
-				
+
 				Array.writeToQueue(outputQueue,block);
 			end
 			byte = messageStream();
@@ -65,8 +65,8 @@ ECB.Cipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end
@@ -116,9 +116,9 @@ ECB.Decipher = function()
 			inputQueue.push(byte);
 			if(inputQueue.size() >= blockCipher.blockSize) then
 				local block = Array.readFromQueue(inputQueue,blockCipher.blockSize);
-				
+
 				block = blockCipher.decrypt(key,block);
-				
+
 				Array.writeToQueue(outputQueue,block);
 			end
 			byte = messageStream();
@@ -135,8 +135,8 @@ ECB.Decipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end

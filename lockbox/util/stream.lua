@@ -58,7 +58,7 @@ Stream.toArray = function(stream)
 		byte = stream();
 	end
 
-	return array;	
+	return array;
 end
 
 
@@ -66,7 +66,7 @@ local fromHexTable = {};
 for i=0,255 do
 	fromHexTable[String.format("%02X",i)]=i;
 	fromHexTable[String.format("%02x",i)]=i;
-end 
+end
 
 Stream.fromHex = function(hex)
 	local queue = Queue();
@@ -74,7 +74,7 @@ Stream.fromHex = function(hex)
 	for i=1,String.len(hex)/2 do
 		local h = String.sub(hex,i*2-1,i*2);
 		queue.push(fromHexTable[h]);
-	end		
+	end
 
 	return queue.pop;
 end
