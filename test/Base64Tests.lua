@@ -50,5 +50,5 @@ for k,v in pairs(test_vectors) do
 
 	local out = Base64.toString(v.enc);
 	assert(out == v.plain,String.format("ARRAY DECODING FAILED expected(%s) actual(%s)",v.plain,out));
-	
+
 end

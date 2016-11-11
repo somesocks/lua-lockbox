@@ -91,7 +91,7 @@ for k,v in pairs(testVectors) do
 				.update(Stream.fromArray(v.ciphertext))
 				.finish()
 				.asHex();
-	
+
 	assert(res2 == Array.toHex(v.plaintext),
 			String.format("test failed! TEA decrypt expected(%s) got(%s)",Array.toHex(v.plaintext),res2));
 

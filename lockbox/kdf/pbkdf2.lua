@@ -41,21 +41,21 @@ local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(i);
 	local b0,b1,b2,b3 = word2bytes(i/0x100000000);
 	return b0,b1,b2,b3,b4,b5,b6,b7;
-end 
+end
 
 
 
 local PBKDF2 = function()
 
 	local public = {};
-	
+
 	local blockLen = 16;
 	local dKeyLen = 256;
 	local iterations = 4096;
 
 	local salt;
 	local password;
-	
+
 
 	local PRF;
 
@@ -112,7 +112,7 @@ local PBKDF2 = function()
 			end
 		end
 
-		return out;		
+		return out;
 	end
 
 	public.finish = function()
@@ -129,7 +129,7 @@ local PBKDF2 = function()
 
 		return public;
 	end
-	
+
 	public.asBytes = function()
 		return dKey;
 	end

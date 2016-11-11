@@ -53,7 +53,7 @@ PCBC.Cipher = function()
 					local out = block;
 					out = Array.XOR(iv,out);
 					out = blockCipher.encrypt(key,out);
-					iv = Array.XOR(out,block);					
+					iv = Array.XOR(out,block);
 					Array.writeToQueue(outputQueue,out);
 				end
 			end
@@ -71,8 +71,8 @@ PCBC.Cipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end
@@ -132,7 +132,7 @@ PCBC.Decipher = function()
 					out = blockCipher.decrypt(key,out);
 					out = Array.XOR(iv,out);
 					Array.writeToQueue(outputQueue,out);
-					iv = Array.XOR(out,block);					
+					iv = Array.XOR(out,block);
 				end
 			end
 			byte = messageStream();
@@ -149,8 +149,8 @@ PCBC.Decipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end

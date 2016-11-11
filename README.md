@@ -51,7 +51,7 @@ Block Cipher Padding:
 # Usage
 To use these cryptographic primitives in a project, you'll likely have to modify Lockbox.lua to change the module search path.  All the primitives import this module to find the packages they require.  See RunTests.lua as an example.
 
-The cryptographic primitives are designed to work on streams of bytes.  There are three data structures used to help with this:  Array(a Lua array of bytes), Stream(an iterator that returns a series of bytes), and Queue(a FIFO pipe of bytes).  See Array.lua, Stream.lua, and Queue.lua for more details. 
+The cryptographic primitives are designed to work on streams of bytes.  There are three data structures used to help with this:  Array(a Lua array of bytes), Stream(an iterator that returns a series of bytes), and Queue(a FIFO pipe of bytes).  See Array.lua, Stream.lua, and Queue.lua for more details.
 
 Most cryptographic primitives are designed in a builder-style pattern.  They usually have three functions: init, update, and finish.  All of these functions will return the primitive, so you can chain functions calls together.
 

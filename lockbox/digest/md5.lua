@@ -5,12 +5,12 @@ local String = require("string");
 local Math = require("math");
 local Queue = require("lockbox.util.queue");
 
-local SHIFT = {	7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22, 
-				5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20, 
-				4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23, 
+local SHIFT = {	7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,
+				5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,
+				4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,
 				6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21 };
 
-local CONSTANTS = {	0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee, 
+local CONSTANTS = {	0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
 					0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
 					0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
 					0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
@@ -64,7 +64,7 @@ local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(Math.floor(i/0x100000000));
 	local b0,b1,b2,b3 = word2bytes(i);
 	return b0,b1,b2,b3,b4,b5,b6,b7;
-end 
+end
 
 local F = function(x,y,z) return OR(AND(x,y),AND(NOT(x),z)); end
 local G = function(x,y,z) return OR(AND(x,z),AND(y,NOT(z))); end
@@ -115,7 +115,7 @@ local MD5 = function()
 			b = b + LROT((a + f + CONSTANTS[i+1] + X[g+1]), SHIFT[i+1]);
 			a = temp;
 		end
-		
+
 		A = AND(A + a, 0xFFFFFFFF);
 		B = AND(B + b, 0xFFFFFFFF);
 		C = AND(C + c, 0xFFFFFFFF);
@@ -174,7 +174,7 @@ local MD5 = function()
 		local  b8, b9,b10,b11 = word2bytes(C);
 		local b12,b13,b14,b15 = word2bytes(D);
 
-		return {b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15};	
+		return {b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15};
 	end
 
 	public.asHex = function()
@@ -182,7 +182,7 @@ local MD5 = function()
 		local  b4, b5, b6, b7 = word2bytes(B);
 		local  b8, b9,b10,b11 = word2bytes(C);
 		local b12,b13,b14,b15 = word2bytes(D);
-		
+
 		return String.format("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
 				b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15);
 	end

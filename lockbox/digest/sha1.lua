@@ -42,7 +42,7 @@ local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(i);
 	local b0,b1,b2,b3 = word2bytes(Math.floor(i/0x100000000));
 	return b0,b1,b2,b3,b4,b5,b6,b7;
-end 
+end
 
 local F = function(x,y,z) return OR(AND(x,y),AND(NOT(x),z)); end
 local G = function(x,y,z) return XOR(x,XOR(y,z)); end
@@ -161,7 +161,7 @@ local SHA1 = function()
 		local b12,b13,b14,b15 = word2bytes(h3);
 		local b16,b17,b18,b19 = word2bytes(h4);
 
-		return {b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19};	
+		return {b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19};
 	end
 
 	public.asHex = function()
@@ -170,7 +170,7 @@ local SHA1 = function()
 		local  b8, b9,b10,b11 = word2bytes(h2);
 		local b12,b13,b14,b15 = word2bytes(h3);
 		local b16,b17,b18,b19 = word2bytes(h4);
-		
+
 		return String.format("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
 				b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19);
 	end
