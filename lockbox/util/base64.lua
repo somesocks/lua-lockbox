@@ -91,7 +91,7 @@ Base64.fromArray = function(array)
 		table.insert(base64,"==");
 	end
 
-	return table.concat(base64,"");	
+	return table.concat(base64,"");
 end
 
 Base64.fromString = function(string)
@@ -125,7 +125,7 @@ Base64.toArray = function(base64)
 			bits = AND(bits,NOT(LSHIFT(0xFFFFFFFF,bitCount)));
 		end
 	end
-	
+
 	return bytes;
 end
 
@@ -150,7 +150,7 @@ Base64.toString = function(base64)
 			bits = AND(bits,NOT(LSHIFT(0xFFFFFFFF,bitCount)));
 		end
 	end
-	
+
 	return table.concat(chars,"");
 end
 

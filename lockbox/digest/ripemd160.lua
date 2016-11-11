@@ -42,7 +42,7 @@ local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(Math.floor(i/0x100000000));
 	local b0,b1,b2,b3 = word2bytes(i);
 	return b0,b1,b2,b3,b4,b5,b6,b7;
-end 
+end
 
 local F = function(x,y,z) return XOR(x, XOR(y,z)); end
 local G = function(x,y,z) return OR(AND(x,y), AND(NOT(x),z)); end
@@ -244,7 +244,7 @@ local RIPEMD160 = function()
 		bbb, ddd = JJJ(bbb, ccc, ddd, eee, aaa, X[ 3], 12), LROT(ddd,10);
 		aaa, ccc = JJJ(aaa, bbb, ccc, ddd, eee, X[12],  6), LROT(ccc,10);
 
-		eee, bbb = III(eee, aaa, bbb, ccc, ddd, X[ 6],  9), LROT(bbb,10); 
+		eee, bbb = III(eee, aaa, bbb, ccc, ddd, X[ 6],  9), LROT(bbb,10);
 		ddd, aaa = III(ddd, eee, aaa, bbb, ccc, X[11], 13), LROT(aaa,10);
 		ccc, eee = III(ccc, ddd, eee, aaa, bbb, X[ 3], 15), LROT(eee,10);
 		bbb, ddd = III(bbb, ccc, ddd, eee, aaa, X[ 7],  7), LROT(ddd,10);
@@ -376,7 +376,7 @@ local RIPEMD160 = function()
 		local b16,b17,b18,b19 = word2bytes(E);
 
 		return { b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,
-				b10,b11,b12,b13,b14,b15,b16,b17,b18,b19};	
+				b10,b11,b12,b13,b14,b15,b16,b17,b18,b19};
 	end
 
 	public.asHex = function()
@@ -385,7 +385,7 @@ local RIPEMD160 = function()
 		local  b8, b9,b10,b11 = word2bytes(C);
 		local b12,b13,b14,b15 = word2bytes(D);
 		local b16,b17,b18,b19 = word2bytes(E);
-		
+
 		local fmt = "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x";
 
 		return String.format(fmt,

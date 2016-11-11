@@ -62,7 +62,7 @@ local testVectors = {
 		plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172a"),
 		ciphertext = Array.fromHex("f58c4c04d6e5f1ba779eabfb5f7bfbd6"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CBCMode.Cipher,
 		decipher = CBCMode.Decipher,
@@ -71,7 +71,7 @@ local testVectors = {
 		plaintext = Array.fromHex("ae2d8a571e03ac9c9eb76fac45af8e51"),
 		ciphertext = Array.fromHex("9cfc4e967edb808d679f777bc6702c7d"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CBCMode.Cipher,
 		decipher = CBCMode.Decipher,
@@ -80,7 +80,7 @@ local testVectors = {
 		plaintext = Array.fromHex("30c81c46a35ce411e5fbc1191a0a52ef"),
 		ciphertext = Array.fromHex("39f23369a9d9bacfa530e26304231461"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CBCMode.Cipher,
 		decipher = CBCMode.Decipher,
@@ -100,7 +100,7 @@ local testVectors = {
 		plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172a"),
 		ciphertext = Array.fromHex("DC7E84BFDA79164B7ECD8486985D3860"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CFBMode.Cipher,
 		decipher = CFBMode.Decipher,
@@ -109,7 +109,7 @@ local testVectors = {
 		plaintext = Array.fromHex("ae2d8a571e03ac9c9eb76fac45af8e51"),
 		ciphertext = Array.fromHex("39ffed143b28b1c832113c6331e5407b"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CFBMode.Cipher,
 		decipher = CFBMode.Decipher,
@@ -118,7 +118,7 @@ local testVectors = {
 		plaintext = Array.fromHex("30c81c46a35ce411e5fbc1191a0a52ef"),
 		ciphertext = Array.fromHex("df10132415e54b92a13ed0a8267ae2f9"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = CFBMode.Cipher,
 		decipher = CFBMode.Decipher,
@@ -127,7 +127,7 @@ local testVectors = {
 		plaintext = Array.fromHex("f69f2445df4f9b17ad2b417be66c3710"),
 		ciphertext = Array.fromHex("75a385741ab9cef82031623d55b1e471"),
 		padding = ZeroPadding
-	},	
+	},
 
 
 	{
@@ -138,7 +138,7 @@ local testVectors = {
 		plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172a"),
 		ciphertext = Array.fromHex("dc7e84bfda79164b7ecd8486985d3860"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = OFBMode.Cipher,
 		decipher = OFBMode.Decipher,
@@ -147,7 +147,7 @@ local testVectors = {
 		plaintext = Array.fromHex("ae2d8a571e03ac9c9eb76fac45af8e51"),
 		ciphertext = Array.fromHex("4febdc6740d20b3ac88f6ad82a4fb08d"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = OFBMode.Cipher,
 		decipher = OFBMode.Decipher,
@@ -156,7 +156,7 @@ local testVectors = {
 		plaintext = Array.fromHex("30c81c46a35ce411e5fbc1191a0a52ef"),
 		ciphertext = Array.fromHex("71ab47a086e86eedf39d1c5bba97c408"),
 		padding = ZeroPadding
-	},	
+	},
 	{
 		cipher = OFBMode.Cipher,
 		decipher = OFBMode.Decipher,
@@ -165,8 +165,8 @@ local testVectors = {
 		plaintext = Array.fromHex("f69f2445df4f9b17ad2b417be66c3710"),
 		ciphertext = Array.fromHex("0126141d67f37be8538f5a8be740e484"),
 		padding = ZeroPadding
-	},	
- 
+	},
+
 	{
 		cipher = CTRMode.Cipher,
 		decipher = CTRMode.Decipher,
@@ -175,7 +175,7 @@ local testVectors = {
 		plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172aae2d8a571e03ac9c9eb76fac45af8e5130c81c46a35ce411e5fbc1191a0a52eff69f2445df4f9b17ad2b417be66c3710"),
 		ciphertext = Array.fromHex("601ec313775789a5b7a7f504bbf3d228f443e3ca4d62b59aca84e990cacaf5c52b0930daa23de94ce87017ba2d84988ddfc9c58db67aada613c2dd08457941a6"),
 		padding = ZeroPadding
-	},	
+	},
 
 
 };

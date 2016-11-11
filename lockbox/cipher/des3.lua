@@ -18,11 +18,11 @@ local getKeys = function(keyBlock)
 		key2 = keyBlock;
 		key3 = keyBlock;
 	elseif (size == 16) then
-		key1 = Array.slice(keyBlock,1,8);		
+		key1 = Array.slice(keyBlock,1,8);
 		key2 = Array.slice(keyBlock,9,16);
 		key3 = key1;
 	elseif (size == 24) then
-		key1 = Array.slice(keyBlock,1,8);		
+		key1 = Array.slice(keyBlock,1,8);
 		key2 = Array.slice(keyBlock,9,16);
 		key3 = Array.slice(keyBlock,17,24);
 	else
@@ -40,13 +40,13 @@ DES3.encrypt = function(keyBlock,inputBlock)
 	local key3;
 
 	key1, key2, key3 = getKeys(keyBlock);
-	
+
 	local block = inputBlock;
 	block = DES.encrypt(key1,block);
 	block = DES.decrypt(key2,block);
 	block = DES.encrypt(key3,block);
-	
-	return block;	
+
+	return block;
 end
 
 DES3.decrypt = function(keyBlock,inputBlock)
@@ -55,13 +55,13 @@ DES3.decrypt = function(keyBlock,inputBlock)
 	local key3;
 
 	key1, key2, key3 = getKeys(keyBlock);
-	
+
 	local block = inputBlock;
 	block = DES.decrypt(key3,block);
 	block = DES.encrypt(key2,block);
 	block = DES.decrypt(key1,block);
-	
-	return block;	
+
+	return block;
 end
 
 return DES3;

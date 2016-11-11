@@ -66,12 +66,12 @@ XTEA.encrypt = function(key,data)
 		temp = XOR(temp,sum + k[ AND(RSHIFT(sum,11),0x3) ])
 		z = AND( z + temp, 0xFFFFFFFF);
 	end
-	
+
 	local out = {};
 
 	out[1],out[2],out[3],out[4] = word2bytes(y);
 	out[5],out[6],out[7],out[8] = word2bytes(z);
-		
+
 	return out;
 end
 
@@ -102,7 +102,7 @@ XTEA.decrypt = function(key,data)
 		y = AND(y + 0x100000000 - temp,0xFFFFFFFF);
 
 	end
-	
+
 	local out = {};
 
 	out[1],out[2],out[3],out[4] = word2bytes(y);

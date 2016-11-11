@@ -42,7 +42,7 @@ local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(Math.floor(i/0x100000000));
 	local b0,b1,b2,b3 = word2bytes(i);
 	return b0,b1,b2,b3,b4,b5,b6,b7;
-end 
+end
 
 local F = function(x,y,z) return XOR(x, XOR(y,z)); end
 local G = function(x,y,z) return OR(AND(x,y), AND(NOT(x),z)); end
@@ -195,7 +195,7 @@ local RIPEMD128 = function()
 		cc = II(cc, dd, aa, bb, X[ 6],  5);
 		bb = II(bb, cc, dd, aa, X[ 2], 12);
 
-		aaa = III(aaa, bbb, ccc, ddd, X[ 5],  8); 
+		aaa = III(aaa, bbb, ccc, ddd, X[ 5],  8);
 		ddd = III(ddd, aaa, bbb, ccc, X[14],  9);
 		ccc = III(ccc, ddd, aaa, bbb, X[ 7],  9);
 		bbb = III(bbb, ccc, ddd, aaa, X[ 0], 11);
@@ -326,7 +326,7 @@ local RIPEMD128 = function()
 		local b12,b13,b14,b15 = word2bytes(D);
 
 		return { b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,
-				b10,b11,b12,b13,b14,b15};	
+				b10,b11,b12,b13,b14,b15};
 	end
 
 	public.asHex = function()
@@ -334,7 +334,7 @@ local RIPEMD128 = function()
 		local  b4, b5, b6, b7 = word2bytes(B);
 		local  b8, b9,b10,b11 = word2bytes(C);
 		local b12,b13,b14,b15 = word2bytes(D);
-		
+
 		local fmt = "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x";
 
 		return String.format(fmt,
