@@ -67,12 +67,12 @@ TEA.encrypt = function(key,data)
 		temp = XOR(temp,RSHIFT(y,5)+k3);
 		z = AND( z + temp, 0xFFFFFFFF);
 	end
-	
+
 	local out = {};
 
 	out[1],out[2],out[3],out[4] = word2bytes(y);
 	out[5],out[6],out[7],out[8] = word2bytes(z);
-		
+
 	return out;
 end
 
@@ -103,7 +103,7 @@ TEA.decrypt = function(key,data)
 
 		sum = AND(sum + 0x100000000 - delta,0xFFFFFFFF);
 	end
-	
+
 	local out = {};
 
 	out[1],out[2],out[3],out[4] = word2bytes(y);

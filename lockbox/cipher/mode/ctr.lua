@@ -45,7 +45,7 @@ CTR.Cipher = function()
 	local inputQueue;
 	local outputQueue;
 	local iv;
-	
+
 	public.setKey = function(keyBytes)
 		key = keyBytes;
 		return public;
@@ -72,7 +72,7 @@ CTR.Cipher = function()
 		iv[16] = iv[16] + 1;
 		if iv[16] <= 0xFF then return; end
 		iv[16] = AND(iv[16],0xFF);
-				
+
 		iv[15] = iv[15] + 1;
 		if iv[15] <= 0xFF then return; end
 		iv[15] = AND(iv[15],0xFF);
@@ -111,7 +111,7 @@ CTR.Cipher = function()
 
 			if(inputQueue.size() >= blockCipher.blockSize) then
 				local block = Array.readFromQueue(inputQueue,blockCipher.blockSize);
-				
+
 				if(iv == nil) then
 					iv = block;
 				else
@@ -137,8 +137,8 @@ CTR.Cipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end
@@ -162,7 +162,7 @@ CTR.Decipher = function()
 	local inputQueue;
 	local outputQueue;
 	local iv;
-	
+
 	public.setKey = function(keyBytes)
 		key = keyBytes;
 		return public;
@@ -189,7 +189,7 @@ CTR.Decipher = function()
 		iv[16] = iv[16] + 1;
 		if iv[16] <= 0xFF then return; end
 		iv[16] = AND(iv[16],0xFF);
-				
+
 		iv[15] = iv[15] + 1;
 		if iv[15] <= 0xFF then return; end
 		iv[15] = AND(iv[15],0xFF);
@@ -254,8 +254,8 @@ CTR.Decipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end

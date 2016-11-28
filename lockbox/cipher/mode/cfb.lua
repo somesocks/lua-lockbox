@@ -54,7 +54,7 @@ CFB.Cipher = function()
 					out = blockCipher.encrypt(key,out);
 					out = Array.XOR(out,block);
 					Array.writeToQueue(outputQueue,out);
-					iv = out;					
+					iv = out;
 				end
 			end
 			byte = messageStream();
@@ -71,8 +71,8 @@ CFB.Cipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end
@@ -149,8 +149,8 @@ CFB.Decipher = function()
 
 	public.getOutputQueue = function()
 		return outputQueue;
-	end	
-	
+	end
+
 	public.asHex = function()
 		return Stream.toHex(outputQueue.pop);
 	end

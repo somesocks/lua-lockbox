@@ -6,7 +6,7 @@ local Array = require("lockbox.util.array");
 local XOR = Bit.bxor;
 
 local HMAC = function()
-	
+
 	local public = {};
 	local blockSize = 64;
 	local Digest = nil;
@@ -35,7 +35,7 @@ local HMAC = function()
 						.asBytes());
 		else
 			keyStream = Stream.fromArray(key);
-		end	
+		end
 
 		outerPadding = {};
 		innerPadding = {};
@@ -55,7 +55,7 @@ local HMAC = function()
 				.update(Stream.fromArray(innerPadding));
 		return public;
 	end
-	
+
 	public.update = function(messageStream)
 		digest.update(messageStream);
 		return public;
@@ -74,7 +74,7 @@ local HMAC = function()
 	public.asBytes = function()
 		return digest.asBytes();
 	end
-	
+
 	public.asHex = function()
 		return digest.asHex();
 	end

@@ -250,7 +250,7 @@ for k,v in pairs(testVectors) do
 				.update(Stream.fromArray(v.ciphertext))
 				.finish()
 				.asBytes();
-	
+
 	assert(Array.toHex(res) == Array.toHex(v.plaintext),
 			String.format("test failed! DES decrypt expected(%s) got(%s)",Array.toString(v.plaintext),Array.toString(res)));
 

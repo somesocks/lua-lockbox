@@ -11,6 +11,7 @@ end
 if not ok then
 	error("no bitwise support found", 2)
 end
+assert(type(e)=="table", "invalid bit module")
 
 -- Workaround to support Lua 5.2 bit32 API with the LuaJIT bit one
 if e.rol and not e.lrotate then

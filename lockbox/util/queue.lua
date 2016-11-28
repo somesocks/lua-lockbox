@@ -1,5 +1,5 @@
 local Queue = function()
-	local queue = {};	
+	local queue = {};
 	local tail = 0;
 	local head = 0;
 
@@ -8,7 +8,7 @@ local Queue = function()
 	public.push = function(obj)
 		queue[head] = obj;
 		head = head + 1;
-		return;		
+		return;
 	end
 
 	public.pop = function()

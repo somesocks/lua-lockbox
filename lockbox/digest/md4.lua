@@ -5,12 +5,12 @@ local String = require("string");
 local Math = require("math");
 local Queue = require("lockbox.util.queue");
 
-local SHIFT = {	3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19, 
-				3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13, 
+local SHIFT = {	3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19,
+				3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13,
 				3,  9, 11, 15,  3,  9, 11, 15,  3,  9, 11, 15,  3,  9, 11, 15 };
 
-local WORD = {	0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 
-				0,  4,  8, 12,  1,  5,  9, 13,  2,  6, 10, 14,  3,  7, 11, 13, 
+local WORD = {	0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
+				0,  4,  8, 12,  1,  5,  9, 13,  2,  6, 10, 14,  3,  7, 11, 13,
 				3,  8,  4, 12,  2, 10,  6, 14,  1,  9,  5, 13,  3,  1,  7, 15 };
 
 local AND = Bit.band;
@@ -50,7 +50,7 @@ local dword2bytes = function(i)
 	local b4,b5,b6,b7 = word2bytes(Math.floor(i/0x100000000));
 	local b0,b1,b2,b3 = word2bytes(i);
 	return b0,b1,b2,b3,b4,b5,b6,b7;
-end 
+end
 
 local F = function(x,y,z) return OR(AND(x,y),AND(NOT(x),z)); end
 local G = function(x,y,z) return OR(AND(x,y), OR(AND(x,z), AND(y,z))); end
@@ -141,7 +141,7 @@ local MD4 = function()
 		c = LROT(c + H(d,a,b) + X[ 7] + 0x6ED9EBA1,11);
 		b = LROT(b + H(c,d,a) + X[15] + 0x6ED9EBA1,15);
 
-		
+
 		A = AND(A + a, 0xFFFFFFFF);
 		B = AND(B + b, 0xFFFFFFFF);
 		C = AND(C + c, 0xFFFFFFFF);
@@ -200,7 +200,7 @@ local MD4 = function()
 		local  b8, b9,b10,b11 = word2bytes(C);
 		local b12,b13,b14,b15 = word2bytes(D);
 
-		return {b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15};	
+		return {b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15};
 	end
 
 	public.asHex = function()
@@ -208,7 +208,7 @@ local MD4 = function()
 		local  b4, b5, b6, b7 = word2bytes(B);
 		local  b8, b9,b10,b11 = word2bytes(C);
 		local b12,b13,b14,b15 = word2bytes(D);
-		
+
 		return String.format("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
 				b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15);
 	end
