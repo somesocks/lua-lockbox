@@ -22,6 +22,7 @@ Message Authentication Codes (MACs):
 * HMAC
 
 Key Derivation Functions (KDFs):
+* HKDF
 * PBKDF2
 
 Block Ciphers:
