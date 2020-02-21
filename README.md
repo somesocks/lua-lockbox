@@ -1,7 +1,7 @@
-# Looking For Maintainers
-
-I'm afraid I've run out of free time to work on the Lockbox, so I'm looking for anyone interested in maintaining/growing the project.  If you're interested, open an issue and request to be a collaborator.
-
+>## :information_source: Looking For Maintainers
+>
+>I'm afraid I've run out of free time to work on the Lockbox, so I'm looking for anyone interested in maintaining/growing the project.  If you're interested, open an issue and request to be a collaborator.
+---
 # The Lua Lockbox
 [![Build Status](https://travis-ci.org/somesocks/lua-lockbox.svg)](https://travis-ci.org/somesocks/lua-lockbox) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
