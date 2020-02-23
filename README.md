@@ -88,6 +88,7 @@ Several weak or broken primitives are implemented in this library, for research 
  * `lockbox.digest.sha1`
  * `lockbox.digest.sha2_224`
  * `lockbox.digest.sha2_256`
+ * `lockbox.kdf.hkdf`
  * `lockbox.kdf.pbkdf2`
  * `lockbox.mac.hmac`
  * `lockbox.padding.ansix923`
