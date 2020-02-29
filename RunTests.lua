@@ -29,11 +29,7 @@ local status = 0
 
 for k,v in pairs(tests) do
 	print(String.format("Running %s...",v));
-	local ok, err = pcall(
-	function()
-		require("test."..v)
-	end
-	);
+	local ok, err = pcall(require, "test."..v);
 	if not ok then
 		print(String.format("FAIL: %s failed with error:\n%s\n", v, err));
 		status = 1
@@ -42,4 +38,4 @@ for k,v in pairs(tests) do
 	end
 end
 
-os.exit(status)
+os.exit(status, true)
