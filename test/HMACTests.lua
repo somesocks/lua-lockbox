@@ -338,7 +338,7 @@ for k,v in pairs(tests) do
 
 	assert(res == v.hmac, String.format(
 		"TEST FAILED! MESSAGE(%s) EXPECTED(%s) ACTUAL(%s)",
-		v.message,
+		tostring(v.message),
 		v.hmac,
 		res));
 
