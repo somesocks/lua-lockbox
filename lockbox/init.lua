@@ -10,7 +10,7 @@ package.path =  "./?.lua;"
 				.. "./test/?.lua;"
 				.. "./util/?.lua;"
 				.. package.path;
-]]--
+--]]
 Lockbox.ALLOW_INSECURE = false;
 
 Lockbox.insecure = function()
