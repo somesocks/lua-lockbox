@@ -1,23 +1,23 @@
 local Stream = require("lockbox.util.stream");
 
-local ANSIX923Padding = function(blockSize,byteCount)
+local ANSIX923Padding = function(blockSize, byteCount)
 
-	local paddingCount = blockSize - (byteCount % blockSize);
-	local bytesLeft = paddingCount;
+    local paddingCount = blockSize - (byteCount % blockSize);
+    local bytesLeft = paddingCount;
 
-	local stream = function()
-		if bytesLeft > 1 then
-			bytesLeft = bytesLeft - 1;
-			return 0x00;
-		elseif bytesLeft > 0 then
-			bytesLeft = bytesLeft - 1;
-			return paddingCount;
-		else
-			return nil;
-		end
-	end
+    local stream = function()
+        if bytesLeft > 1 then
+            bytesLeft = bytesLeft - 1;
+            return 0x00;
+        elseif bytesLeft > 0 then
+            bytesLeft = bytesLeft - 1;
+            return paddingCount;
+        else
+            return nil;
+        end
+    end
 
-	return stream;
+    return stream;
 
 end
 

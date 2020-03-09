@@ -33,111 +33,111 @@ local RSHIFT = Bit.rshift;
 
 local MD2 = function()
 
-	local queue = Queue();
+    local queue = Queue();
 
-	local X = {};
-	for i=0,47 do
-		X[i] = 0x00;
-	end
+    local X = {};
+    for i = 0, 47 do
+        X[i] = 0x00;
+    end
 
-	local L = 0;
-	local C = {};
-	for i=0,15 do
-		C[i] = 0x00;
-	end
+    local L = 0;
+    local C = {};
+    for i = 0, 15 do
+        C[i] = 0x00;
+    end
 
-	local public = {};
+    local public = {};
 
-	local processBlock = function()
-		local block = {};
+    local processBlock = function()
+        local block = {};
 
-		for i=0,15 do
-			block[i] = queue.pop();
-		end
+        for i = 0, 15 do
+            block[i] = queue.pop();
+        end
 
-		for i=0,15 do
-			X[i+16] = block[i];
-			X[i+32] = XOR(X[i],block[i]); --mix
-		end
+        for i = 0, 15 do
+            X[i + 16] = block[i];
+            X[i + 32] = XOR(X[i], block[i]); --mix
+        end
 
-		local t;
+        local t;
 
-		--update block
-		t=0;
-		for i=0,17 do
-			for j=0,47 do
-				X[j] = XOR(X[j],SUBST[t+1]);
-				t = X[j];
-			end
-			t = (t+i) % 256;
-		end
+        --update block
+        t = 0;
+        for i = 0, 17 do
+            for j = 0, 47 do
+                X[j] = XOR(X[j], SUBST[t + 1]);
+                t = X[j];
+            end
+            t = (t + i) % 256;
+        end
 
-		--update checksum
-		t = C[15];
-		for i=0,15 do
-			C[i] = XOR(C[i],SUBST[XOR(block[i],t)+1]);
-			t = C[i];
-		end
+        --update checksum
+        t = C[15];
+        for i = 0, 15 do
+            C[i] = XOR(C[i], SUBST[XOR(block[i], t) + 1]);
+            t = C[i];
+        end
 
-	end
+    end
 
-	public.init = function()
-		queue.reset();
+    public.init = function()
+        queue.reset();
 
-		X = {};
-		for i=0,47 do
-			X[i] = 0x00;
-		end
+        X = {};
+        for i = 0, 47 do
+            X[i] = 0x00;
+        end
 
-		L = 0;
-		C = {};
-		for i=0,15 do
-			C[i] = 0x00;
-		end
+        L = 0;
+        C = {};
+        for i = 0, 15 do
+            C[i] = 0x00;
+        end
 
-		return public;
-	end
+        return public;
+    end
 
-	public.update = function(stream)
-		for b in stream do
-			queue.push(b);
-			if(queue.size() >= 16) then processBlock(); end
-		end
+    public.update = function(stream)
+        for b in stream do
+            queue.push(b);
+            if(queue.size() >= 16) then processBlock(); end
+        end
 
-		return public;
-	end
+        return public;
+    end
 
-	public.finish = function()
-		local i = 16-queue.size();
+    public.finish = function()
+        local i = 16 - queue.size();
 
-		while queue.size() < 16 do
-			queue.push(i);
-		end
+        while queue.size() < 16 do
+            queue.push(i);
+        end
 
-		processBlock();
+        processBlock();
 
-		queue.push(C[ 0]); queue.push(C[ 1]); queue.push(C[ 2]); queue.push(C[ 3]);
-		queue.push(C[ 4]); queue.push(C[ 5]); queue.push(C[ 6]); queue.push(C[ 7]);
-		queue.push(C[ 8]); queue.push(C[ 9]); queue.push(C[10]); queue.push(C[11]);
-		queue.push(C[12]); queue.push(C[13]); queue.push(C[14]); queue.push(C[15]);
+        queue.push(C[ 0]); queue.push(C[ 1]); queue.push(C[ 2]); queue.push(C[ 3]);
+        queue.push(C[ 4]); queue.push(C[ 5]); queue.push(C[ 6]); queue.push(C[ 7]);
+        queue.push(C[ 8]); queue.push(C[ 9]); queue.push(C[10]); queue.push(C[11]);
+        queue.push(C[12]); queue.push(C[13]); queue.push(C[14]); queue.push(C[15]);
 
-		processBlock();
+        processBlock();
 
-		return public;
-	end
+        return public;
+    end
 
-	public.asBytes = function()
-		return {X[ 0],X[ 1],X[ 2],X[ 3],X[ 4],X[ 5],X[ 6],X[ 7],
-				X[ 8],X[ 9],X[10],X[11],X[12],X[13],X[14],X[15]};
-	end
+    public.asBytes = function()
+        return {X[ 0], X[ 1], X[ 2], X[ 3], X[ 4], X[ 5], X[ 6], X[ 7],
+                X[ 8], X[ 9], X[10], X[11], X[12], X[13], X[14], X[15]};
+    end
 
-	public.asHex = function()
-		return String.format("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-				X[ 0],X[ 1],X[ 2],X[ 3],X[ 4],X[ 5],X[ 6],X[ 7],
-				X[ 8],X[ 9],X[10],X[11],X[12],X[13],X[14],X[15]);
-	end
+    public.asHex = function()
+        return String.format("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+                X[ 0], X[ 1], X[ 2], X[ 3], X[ 4], X[ 5], X[ 6], X[ 7],
+                X[ 8], X[ 9], X[10], X[11], X[12], X[13], X[14], X[15]);
+    end
 
-	return public;
+    return public;
 
 end
 

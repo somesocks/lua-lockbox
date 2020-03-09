@@ -15,7 +15,7 @@ local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
 local SBOX = {
- [0]=0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,
+ [0] = 0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,
  0xCA, 0x82, 0xC9, 0x7D, 0xFA, 0x59, 0x47, 0xF0, 0xAD, 0xD4, 0xA2, 0xAF, 0x9C, 0xA4, 0x72, 0xC0,
  0xB7, 0xFD, 0x93, 0x26, 0x36, 0x3F, 0xF7, 0xCC, 0x34, 0xA5, 0xE5, 0xF1, 0x71, 0xD8, 0x31, 0x15,
  0x04, 0xC7, 0x23, 0xC3, 0x18, 0x96, 0x05, 0x9A, 0x07, 0x12, 0x80, 0xE2, 0xEB, 0x27, 0xB2, 0x75,
@@ -33,7 +33,7 @@ local SBOX = {
  0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16};
 
 local ISBOX = {
- [0]=0x52, 0x09, 0x6A, 0xD5, 0x30, 0x36, 0xA5, 0x38, 0xBF, 0x40, 0xA3, 0x9E, 0x81, 0xF3, 0xD7, 0xFB,
+ [0] = 0x52, 0x09, 0x6A, 0xD5, 0x30, 0x36, 0xA5, 0x38, 0xBF, 0x40, 0xA3, 0x9E, 0x81, 0xF3, 0xD7, 0xFB,
  0x7C, 0xE3, 0x39, 0x82, 0x9B, 0x2F, 0xFF, 0x87, 0x34, 0x8E, 0x43, 0x44, 0xC4, 0xDE, 0xE9, 0xCB,
  0x54, 0x7B, 0x94, 0x32, 0xA6, 0xC2, 0x23, 0x3D, 0xEE, 0x4C, 0x95, 0x0B, 0x42, 0xFA, 0xC3, 0x4E,
  0x08, 0x2E, 0xA1, 0x66, 0x28, 0xD9, 0x24, 0xB2, 0x76, 0x5B, 0xA2, 0x49, 0x6D, 0x8B, 0xD1, 0x25,
@@ -50,11 +50,11 @@ local ISBOX = {
  0xA0, 0xE0, 0x3B, 0x4D, 0xAE, 0x2A, 0xF5, 0xB0, 0xC8, 0xEB, 0xBB, 0x3C, 0x83, 0x53, 0x99, 0x61,
  0x17, 0x2B, 0x04, 0x7E, 0xBA, 0x77, 0xD6, 0x26, 0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D};
 
-local ROW_SHIFT =  {  1,  6, 11, 16,  5, 10, 15,  4,  9, 14,  3,  8, 13,  2,  7, 12,};
-local IROW_SHIFT = {  1, 14, 11,  8,  5,  2, 15, 12,  9,  6,  3, 16, 13, 10,  7,  4,};
+local ROW_SHIFT =  {  1,  6, 11, 16,  5, 10, 15,  4,  9, 14,  3,  8, 13,  2,  7, 12, };
+local IROW_SHIFT = {  1, 14, 11,  8,  5,  2, 15, 12,  9,  6,  3, 16, 13, 10,  7,  4, };
 
 local ETABLE = {
- [0]=0x01, 0x03, 0x05, 0x0F, 0x11, 0x33, 0x55, 0xFF, 0x1A, 0x2E, 0x72, 0x96, 0xA1, 0xF8, 0x13, 0x35,
+ [0] = 0x01, 0x03, 0x05, 0x0F, 0x11, 0x33, 0x55, 0xFF, 0x1A, 0x2E, 0x72, 0x96, 0xA1, 0xF8, 0x13, 0x35,
  0x5F, 0xE1, 0x38, 0x48, 0xD8, 0x73, 0x95, 0xA4, 0xF7, 0x02, 0x06, 0x0A, 0x1E, 0x22, 0x66, 0xAA,
  0xE5, 0x34, 0x5C, 0xE4, 0x37, 0x59, 0xEB, 0x26, 0x6A, 0xBE, 0xD9, 0x70, 0x90, 0xAB, 0xE6, 0x31,
  0x53, 0xF5, 0x04, 0x0C, 0x14, 0x3C, 0x44, 0xCC, 0x4F, 0xD1, 0x68, 0xB8, 0xD3, 0x6E, 0xB2, 0xCD,
@@ -72,7 +72,7 @@ local ETABLE = {
  0x39, 0x4B, 0xDD, 0x7C, 0x84, 0x97, 0xA2, 0xFD, 0x1C, 0x24, 0x6C, 0xB4, 0xC7, 0x52, 0xF6, 0x01};
 
 local LTABLE = {
- [0]=0x00, 0x00, 0x19, 0x01, 0x32, 0x02, 0x1A, 0xC6, 0x4B, 0xC7, 0x1B, 0x68, 0x33, 0xEE, 0xDF, 0x03,
+ [0] = 0x00, 0x00, 0x19, 0x01, 0x32, 0x02, 0x1A, 0xC6, 0x4B, 0xC7, 0x1B, 0x68, 0x33, 0xEE, 0xDF, 0x03,
  0x64, 0x04, 0xE0, 0x0E, 0x34, 0x8D, 0x81, 0xEF, 0x4C, 0x71, 0x08, 0xC8, 0xF8, 0x69, 0x1C, 0xC1,
  0x7D, 0xC2, 0x1D, 0xB5, 0xF9, 0xB9, 0x27, 0x6A, 0x4D, 0xE4, 0xA6, 0x72, 0x9A, 0xC9, 0x09, 0x78,
  0x65, 0x2F, 0x8A, 0x05, 0x21, 0x0F, 0xE1, 0x24, 0x12, 0xF0, 0x82, 0x45, 0x35, 0x93, 0xDA, 0x8E,
@@ -120,159 +120,159 @@ local RCON = {
 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d};
 
 
-local GMUL = function(A,B)
-	if(A == 0x01) then return B; end
-	if(B == 0x01) then return A; end
-	if(A == 0x00) then return 0; end
-	if(B == 0x00) then return 0; end
+local GMUL = function(A, B)
+    if(A == 0x01) then return B; end
+    if(B == 0x01) then return A; end
+    if(A == 0x00) then return 0; end
+    if(B == 0x00) then return 0; end
 
-	local LA = LTABLE[A];
-	local LB = LTABLE[B];
+    local LA = LTABLE[A];
+    local LB = LTABLE[B];
 
-	local sum = LA + LB;
-	if (sum > 0xFF) then sum = sum - 0xFF; end
+    local sum = LA + LB;
+    if (sum > 0xFF) then sum = sum - 0xFF; end
 
-	return ETABLE[sum];
+    return ETABLE[sum];
 end
 
 local byteSub = Array.substitute;
 
 local shiftRow = Array.permute;
 
-local mixCol = function(i,mix)
-	local out = {};
+local mixCol = function(i, mix)
+    local out = {};
 
-	local a,b,c,d;
+    local a, b, c, d;
 
-	a = GMUL(i[ 1],mix[ 1]);
-	b = GMUL(i[ 2],mix[ 2]);
-	c = GMUL(i[ 3],mix[ 3]);
-	d = GMUL(i[ 4],mix[ 4]);
-	out[ 1] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 1],mix[ 5]);
-	b = GMUL(i[ 2],mix[ 6]);
-	c = GMUL(i[ 3],mix[ 7]);
-	d = GMUL(i[ 4],mix[ 8]);
-	out[ 2] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 1],mix[ 9]);
-	b = GMUL(i[ 2],mix[10]);
-	c = GMUL(i[ 3],mix[11]);
-	d = GMUL(i[ 4],mix[12]);
-	out[ 3] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 1],mix[13]);
-	b = GMUL(i[ 2],mix[14]);
-	c = GMUL(i[ 3],mix[15]);
-	d = GMUL(i[ 4],mix[16]);
-	out[ 4] = XOR(XOR(a,b),XOR(c,d));
-
-
-	a = GMUL(i[ 5],mix[ 1]);
-	b = GMUL(i[ 6],mix[ 2]);
-	c = GMUL(i[ 7],mix[ 3]);
-	d = GMUL(i[ 8],mix[ 4]);
-	out[ 5] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 5],mix[ 5]);
-	b = GMUL(i[ 6],mix[ 6]);
-	c = GMUL(i[ 7],mix[ 7]);
-	d = GMUL(i[ 8],mix[ 8]);
-	out[ 6] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 5],mix[ 9]);
-	b = GMUL(i[ 6],mix[10]);
-	c = GMUL(i[ 7],mix[11]);
-	d = GMUL(i[ 8],mix[12]);
-	out[ 7] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 5],mix[13]);
-	b = GMUL(i[ 6],mix[14]);
-	c = GMUL(i[ 7],mix[15]);
-	d = GMUL(i[ 8],mix[16]);
-	out[ 8] = XOR(XOR(a,b),XOR(c,d));
+    a = GMUL(i[ 1], mix[ 1]);
+    b = GMUL(i[ 2], mix[ 2]);
+    c = GMUL(i[ 3], mix[ 3]);
+    d = GMUL(i[ 4], mix[ 4]);
+    out[ 1] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 1], mix[ 5]);
+    b = GMUL(i[ 2], mix[ 6]);
+    c = GMUL(i[ 3], mix[ 7]);
+    d = GMUL(i[ 4], mix[ 8]);
+    out[ 2] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 1], mix[ 9]);
+    b = GMUL(i[ 2], mix[10]);
+    c = GMUL(i[ 3], mix[11]);
+    d = GMUL(i[ 4], mix[12]);
+    out[ 3] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 1], mix[13]);
+    b = GMUL(i[ 2], mix[14]);
+    c = GMUL(i[ 3], mix[15]);
+    d = GMUL(i[ 4], mix[16]);
+    out[ 4] = XOR(XOR(a, b), XOR(c, d));
 
 
-	a = GMUL(i[ 9],mix[ 1]);
-	b = GMUL(i[10],mix[ 2]);
-	c = GMUL(i[11],mix[ 3]);
-	d = GMUL(i[12],mix[ 4]);
-	out[ 9] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 9],mix[ 5]);
-	b = GMUL(i[10],mix[ 6]);
-	c = GMUL(i[11],mix[ 7]);
-	d = GMUL(i[12],mix[ 8]);
-	out[10] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 9],mix[ 9]);
-	b = GMUL(i[10],mix[10]);
-	c = GMUL(i[11],mix[11]);
-	d = GMUL(i[12],mix[12]);
-	out[11] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[ 9],mix[13]);
-	b = GMUL(i[10],mix[14]);
-	c = GMUL(i[11],mix[15]);
-	d = GMUL(i[12],mix[16]);
-	out[12] = XOR(XOR(a,b),XOR(c,d));
+    a = GMUL(i[ 5], mix[ 1]);
+    b = GMUL(i[ 6], mix[ 2]);
+    c = GMUL(i[ 7], mix[ 3]);
+    d = GMUL(i[ 8], mix[ 4]);
+    out[ 5] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 5], mix[ 5]);
+    b = GMUL(i[ 6], mix[ 6]);
+    c = GMUL(i[ 7], mix[ 7]);
+    d = GMUL(i[ 8], mix[ 8]);
+    out[ 6] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 5], mix[ 9]);
+    b = GMUL(i[ 6], mix[10]);
+    c = GMUL(i[ 7], mix[11]);
+    d = GMUL(i[ 8], mix[12]);
+    out[ 7] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 5], mix[13]);
+    b = GMUL(i[ 6], mix[14]);
+    c = GMUL(i[ 7], mix[15]);
+    d = GMUL(i[ 8], mix[16]);
+    out[ 8] = XOR(XOR(a, b), XOR(c, d));
 
 
-	a = GMUL(i[13],mix[ 1]);
-	b = GMUL(i[14],mix[ 2]);
-	c = GMUL(i[15],mix[ 3]);
-	d = GMUL(i[16],mix[ 4]);
-	out[13] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[13],mix[ 5]);
-	b = GMUL(i[14],mix[ 6]);
-	c = GMUL(i[15],mix[ 7]);
-	d = GMUL(i[16],mix[ 8]);
-	out[14] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[13],mix[ 9]);
-	b = GMUL(i[14],mix[10]);
-	c = GMUL(i[15],mix[11]);
-	d = GMUL(i[16],mix[12]);
-	out[15] = XOR(XOR(a,b),XOR(c,d));
-	a = GMUL(i[13],mix[13]);
-	b = GMUL(i[14],mix[14]);
-	c = GMUL(i[15],mix[15]);
-	d = GMUL(i[16],mix[16]);
-	out[16] = XOR(XOR(a,b),XOR(c,d));
+    a = GMUL(i[ 9], mix[ 1]);
+    b = GMUL(i[10], mix[ 2]);
+    c = GMUL(i[11], mix[ 3]);
+    d = GMUL(i[12], mix[ 4]);
+    out[ 9] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 9], mix[ 5]);
+    b = GMUL(i[10], mix[ 6]);
+    c = GMUL(i[11], mix[ 7]);
+    d = GMUL(i[12], mix[ 8]);
+    out[10] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 9], mix[ 9]);
+    b = GMUL(i[10], mix[10]);
+    c = GMUL(i[11], mix[11]);
+    d = GMUL(i[12], mix[12]);
+    out[11] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[ 9], mix[13]);
+    b = GMUL(i[10], mix[14]);
+    c = GMUL(i[11], mix[15]);
+    d = GMUL(i[12], mix[16]);
+    out[12] = XOR(XOR(a, b), XOR(c, d));
 
-	return out;
+
+    a = GMUL(i[13], mix[ 1]);
+    b = GMUL(i[14], mix[ 2]);
+    c = GMUL(i[15], mix[ 3]);
+    d = GMUL(i[16], mix[ 4]);
+    out[13] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[13], mix[ 5]);
+    b = GMUL(i[14], mix[ 6]);
+    c = GMUL(i[15], mix[ 7]);
+    d = GMUL(i[16], mix[ 8]);
+    out[14] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[13], mix[ 9]);
+    b = GMUL(i[14], mix[10]);
+    c = GMUL(i[15], mix[11]);
+    d = GMUL(i[16], mix[12]);
+    out[15] = XOR(XOR(a, b), XOR(c, d));
+    a = GMUL(i[13], mix[13]);
+    b = GMUL(i[14], mix[14]);
+    c = GMUL(i[15], mix[15]);
+    d = GMUL(i[16], mix[16]);
+    out[16] = XOR(XOR(a, b), XOR(c, d));
+
+    return out;
 end
 
-local keyRound = function(key,round)
-	local out = {};
+local keyRound = function(key, round)
+    local out = {};
 
-	out[ 1] = XOR(key[ 1],XOR(SBOX[key[14]],RCON[round]));
-	out[ 2] = XOR(key[ 2],SBOX[key[15]]);
-	out[ 3] = XOR(key[ 3],SBOX[key[16]]);
-	out[ 4] = XOR(key[ 4],SBOX[key[13]]);
+    out[ 1] = XOR(key[ 1], XOR(SBOX[key[14]], RCON[round]));
+    out[ 2] = XOR(key[ 2], SBOX[key[15]]);
+    out[ 3] = XOR(key[ 3], SBOX[key[16]]);
+    out[ 4] = XOR(key[ 4], SBOX[key[13]]);
 
-	out[ 5] = XOR(out[ 1],key[ 5]);
-	out[ 6] = XOR(out[ 2],key[ 6]);
-	out[ 7] = XOR(out[ 3],key[ 7]);
-	out[ 8] = XOR(out[ 4],key[ 8]);
+    out[ 5] = XOR(out[ 1], key[ 5]);
+    out[ 6] = XOR(out[ 2], key[ 6]);
+    out[ 7] = XOR(out[ 3], key[ 7]);
+    out[ 8] = XOR(out[ 4], key[ 8]);
 
-	out[ 9] = XOR(out[ 5],key[ 9]);
-	out[10] = XOR(out[ 6],key[10]);
-	out[11] = XOR(out[ 7],key[11]);
-	out[12] = XOR(out[ 8],key[12]);
+    out[ 9] = XOR(out[ 5], key[ 9]);
+    out[10] = XOR(out[ 6], key[10]);
+    out[11] = XOR(out[ 7], key[11]);
+    out[12] = XOR(out[ 8], key[12]);
 
-	out[13] = XOR(out[ 9],key[13]);
-	out[14] = XOR(out[10],key[14]);
-	out[15] = XOR(out[11],key[15]);
-	out[16] = XOR(out[12],key[16]);
+    out[13] = XOR(out[ 9], key[13]);
+    out[14] = XOR(out[10], key[14]);
+    out[15] = XOR(out[11], key[15]);
+    out[16] = XOR(out[12], key[16]);
 
-	return out;
+    return out;
 end
 
 local keyExpand = function(key)
-	local keys = {};
+    local keys = {};
 
-	local temp = key;
+    local temp = key;
 
-	keys[1] = temp;
+    keys[1] = temp;
 
-	for i=1,10 do
-		temp = keyRound(temp,i);
-		keys[i+1] = temp;
-	end
+    for i = 1, 10 do
+        temp = keyRound(temp, i);
+        keys[i + 1] = temp;
+    end
 
-	return keys;
+    return keys;
 
 end
 
@@ -284,143 +284,143 @@ local AES = {};
 
 AES.blockSize = 16;
 
-AES.encrypt = function(key,block)
+AES.encrypt = function(key, block)
 
-	local key = keyExpand(key);
+    local key = keyExpand(key);
 
-	--round 0
-	block = addKey(block,key[1]);
+    --round 0
+    block = addKey(block, key[1]);
 
-	--round 1
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[2]);
+    --round 1
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[2]);
 
-	--round 2
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[3]);
+    --round 2
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[3]);
 
-	--round 3
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[4]);
+    --round 3
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[4]);
 
-	--round 4
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[5]);
+    --round 4
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[5]);
 
-	--round 5
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[6]);
+    --round 5
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[6]);
 
-	--round 6
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[7]);
+    --round 6
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[7]);
 
-	--round 7
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[8]);
+    --round 7
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[8]);
 
-	--round 8
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[9]);
+    --round 8
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[9]);
 
-	--round 9
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = mixCol(block,MIXTABLE);
-	block = addKey(block,key[10]);
+    --round 9
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = mixCol(block, MIXTABLE);
+    block = addKey(block, key[10]);
 
-	--round 10
-	block = byteSub(block,SBOX);
-	block = shiftRow(block,ROW_SHIFT);
-	block = addKey(block,key[11]);
+    --round 10
+    block = byteSub(block, SBOX);
+    block = shiftRow(block, ROW_SHIFT);
+    block = addKey(block, key[11]);
 
-	return block;
+    return block;
 
 end
 
-AES.decrypt = function(key,block)
+AES.decrypt = function(key, block)
 
-	local key = keyExpand(key);
+    local key = keyExpand(key);
 
-	--round 0
-	block = addKey(block,key[11]);
+    --round 0
+    block = addKey(block, key[11]);
 
-	--round 1
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[10]);
-	block = mixCol(block,IMIXTABLE);
+    --round 1
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[10]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 2
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[9]);
-	block = mixCol(block,IMIXTABLE);
+    --round 2
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[9]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 3
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[8]);
-	block = mixCol(block,IMIXTABLE);
+    --round 3
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[8]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 4
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[7]);
-	block = mixCol(block,IMIXTABLE);
+    --round 4
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[7]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 5
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[6]);
-	block = mixCol(block,IMIXTABLE);
+    --round 5
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[6]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 6
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[5]);
-	block = mixCol(block,IMIXTABLE);
+    --round 6
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[5]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 7
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[4]);
-	block = mixCol(block,IMIXTABLE);
+    --round 7
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[4]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 8
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[3]);
-	block = mixCol(block,IMIXTABLE);
+    --round 8
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[3]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 9
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[2]);
-	block = mixCol(block,IMIXTABLE);
+    --round 9
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[2]);
+    block = mixCol(block, IMIXTABLE);
 
-	--round 10
-	block = shiftRow(block,IROW_SHIFT);
-	block = byteSub(block,ISBOX);
-	block = addKey(block,key[1]);
+    --round 10
+    block = shiftRow(block, IROW_SHIFT);
+    block = byteSub(block, ISBOX);
+    block = addKey(block, key[1]);
 
-	return block;
+    return block;
 end
 
 return AES;
