@@ -3,7 +3,7 @@
 >I'm afraid I've run out of free time to work on the Lockbox, so I'm looking for anyone interested in maintaining/growing the project.  If you're interested, open an issue and request to be a collaborator.
 ---
 # The Lua Lockbox
-[![Build Status](https://travis-ci.org/somesocks/lua-lockbox.svg)](https://travis-ci.org/somesocks/lua-lockbox) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/somesocks/lua-lockbox.svg)](https://travis-ci.com/somesocks/lua-lockbox) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A collection of cryptographic primitives and protocols written in pure Lua.  This was written to provide cross-platform, tested reference implementations of many different cryptographic primitives.  These are written to be easy to read and easy to use, not for performance!
 
