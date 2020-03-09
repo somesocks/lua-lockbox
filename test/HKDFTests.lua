@@ -63,7 +63,7 @@ local tests = {
     }
 };
 
-for k,v in pairs(tests) do
+for k, v in pairs(tests) do
     local res = HKDF()
                     .setDigest(v.digest)
                     .setInputKeyMaterial(v.ikm)
@@ -72,7 +72,7 @@ for k,v in pairs(tests) do
                     .setOutputLen(v.outputLen)
                     .finish()
                     .asHex();
-    
+
     assert(string.lower(res) == v.output,
             string.format("TEST FAILED IKM(%s) EXPECTED(%s) ACTUAL(%s)",
                     Array.toHex(v.ikm),

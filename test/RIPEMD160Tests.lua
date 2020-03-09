@@ -13,15 +13,15 @@ test["abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"] = "12a053384a9c
 test["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"] = "b0e20b6e3116640286ed3a87a5713079b21f5189";
 test["12345678901234567890123456789012345678901234567890123456789012345678901234567890"] = "9b752e45573d4b39f4dbd3323cab82bf63326bfb";
 
-for k,v in pairs(test) do
-	local message = k;
-	local expected = v;
-	local actual = Digest()
-					.update(Stream.fromString(k))
-					.finish()
-					.asHex();
+for k, v in pairs(test) do
+    local message = k;
+    local expected = v;
+    local actual = Digest()
+                    .update(Stream.fromString(k))
+                    .finish()
+                    .asHex();
 
-	assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)",message,expected,actual));
+    assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)", message, expected, actual));
 
 end
 
