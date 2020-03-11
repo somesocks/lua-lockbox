@@ -40,12 +40,18 @@ for k, v in pairs(test_vectors) do
     local out = Base64.fromStream(Stream.fromString(v.plain));
     assert(out == v.enc, String.format("STREAM ENCODING FAILED expected(%s) actual(%s)", v.enc, out));
 
+    local out = Base64.fromArray(Array.fromString(v.plain));
+    assert(out == v.enc, String.format("STREAM ENCODING FAILED expected(%s) actual(%s)", v.enc, out));
+
     local out = Base64.fromString(v.plain);
     assert(out == v.enc, String.format("ARRAY ENECODING FAILED expected(%s) actual(%s)", v.enc, out));
 
+    local out = Base64.toStream(v.enc);
+    out = Stream.toString(out);
+    assert(out == v.plain, String.format("ARRAY DECODING FAILED expected(%s) actual(%s)", v.plain, out));
+
     local out = Base64.toArray(v.enc);
     out = Array.toString(out);
-
     assert(out == v.plain, String.format("ARRAY DECODING FAILED expected(%s) actual(%s)", v.plain, out));
 
     local out = Base64.toString(v.enc);
