@@ -62,96 +62,63 @@ Base64.fromStream = function(stream)
 end
 
 Base64.fromArray = function(array)
-    local bits = 0x00;
-    local bitCount = 0;
-    local base64 = {};
+    local ind = 0;
 
-    local ind = 1;
-
-    local byte = array[ind]; ind = ind + 1;
-    while byte ~= nil do
-        bits = OR(LSHIFT(bits, 8), byte);
-        bitCount = bitCount + 8;
-        while bitCount >= 6 do
-            bitCount = bitCount - 6;
-            local temp = RSHIFT(bits, bitCount);
-            table.insert(base64, LOOKUP[temp]);
-            bits = AND(bits, NOT(LSHIFT(0xFFFFFFFF, bitCount)));
-        end
-        byte = array[ind]; ind = ind + 1;
+    local streamArray = function()
+        ind = ind + 1;
+        return array[ind];
     end
 
-    if (bitCount == 4) then
-        bits = LSHIFT(bits, 2);
-        table.insert(base64, LOOKUP[bits]);
-        table.insert(base64, "=");
-    elseif (bitCount == 2) then
-        bits = LSHIFT(bits, 4);
-        table.insert(base64, LOOKUP[bits]);
-        table.insert(base64, "==");
-    end
-
-    return table.concat(base64, "");
+    return Base64.fromStream(streamArray);
 end
 
 Base64.fromString = function(string)
-    return Base64.fromArray(Array.fromString(string));
+    return Base64.fromStream(Stream.fromString(string));
 end
 
 
 
 Base64.toStream = function(base64)
-    return Stream.fromArray(Base64.toArray(base64));
+    local stream = coroutine.create(function()
+      local bits = 0x00;
+      local bitCount = 0;
+
+      local yield = coroutine.yield;
+
+      for c in String.gmatch(base64, ".") do
+          if (c == "=") then
+              bits = RSHIFT(bits, 2); bitCount = bitCount - 2;
+          else
+              bits = LSHIFT(bits, 6); bitCount = bitCount + 6;
+              bits = OR(bits, LOOKUP[c]);
+          end
+
+          while(bitCount >= 8) do
+              bitCount = bitCount - 8;
+              local byte = RSHIFT(bits, bitCount);
+              bits = AND(bits, NOT(LSHIFT(0xFFFFFFFF, bitCount)));
+              yield(byte);
+          end
+      end
+    end)
+
+    local resume = coroutine.resume;
+    local status = coroutine.status;
+
+    return function()
+        if status(stream) == 'dead' then return nil; end
+
+        local _, byte = coroutine.resume(stream);
+        return byte;
+    end
 end
 
 Base64.toArray = function(base64)
-    local bits = 0x00;
-    local bitCount = 0;
-
-    local bytes = {};
-
-    for c in String.gmatch(base64, ".") do
-        if (c == "=") then
-            bits = RSHIFT(bits, 2); bitCount = bitCount - 2;
-        else
-            bits = LSHIFT(bits, 6); bitCount = bitCount + 6;
-            bits = OR(bits, LOOKUP[c]);
-        end
-
-        while(bitCount >= 8) do
-            bitCount = bitCount - 8;
-            local temp = RSHIFT(bits, bitCount);
-            table.insert(bytes, temp);
-            bits = AND(bits, NOT(LSHIFT(0xFFFFFFFF, bitCount)));
-        end
-    end
-
-    return bytes;
+    return Stream.toArray(Base64.toStream(base64));
 end
 
 Base64.toString = function(base64)
-    local bits = 0x00;
-    local bitCount = 0;
-
-    local chars = {};
-
-    for c in String.gmatch(base64, ".") do
-        if (c == "=") then
-            bits = RSHIFT(bits, 2); bitCount = bitCount - 2;
-        else
-            bits = LSHIFT(bits, 6); bitCount = bitCount + 6;
-            bits = OR(bits, LOOKUP[c]);
-        end
-
-        while(bitCount >= 8) do
-            bitCount = bitCount - 8;
-            local temp = RSHIFT(bits, bitCount);
-            table.insert(chars, String.char(temp));
-            bits = AND(bits, NOT(LSHIFT(0xFFFFFFFF, bitCount)));
-        end
-    end
-
-    return table.concat(chars, "");
+    return Stream.toString(Base64.toStream(base64));
 end
 
 return Base64;
