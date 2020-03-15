@@ -8,3 +8,6 @@ script/bootstrap
 
 echo -e '\n==> Running tests...'
 lua RunTests.lua
+
+echo -e '\n==> Running perf...'
+lua RunPerf.lua
