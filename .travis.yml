@@ -1,4 +1,4 @@
-sudo: false
+language: minimal
 env:
   - LUA_VERSION='lua-5.2'
   - LUA_VERSION='lua-5.3'
