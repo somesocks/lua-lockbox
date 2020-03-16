@@ -8,11 +8,7 @@ Stream.fromString = function(string)
     local i = 0;
     return function()
         i = i + 1;
-        if(i <= String.len(string)) then
-            return String.byte(string, i);
-        else
-            return nil;
-        end
+        return String.byte(string, i);
     end
 end
 
@@ -28,7 +24,7 @@ Stream.toString = function(stream)
         byte = stream();
     end
 
-    return table.concat(array, "");
+    return table.concat(array);
 end
 
 
@@ -97,7 +93,7 @@ Stream.toHex = function(stream)
         byte = stream();
     end
 
-    return table.concat(hex, "");
+    return table.concat(hex);
 end
 
 return Stream;
