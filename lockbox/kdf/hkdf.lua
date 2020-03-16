@@ -8,13 +8,13 @@ local HKDF = function()
     local public = {};
 
     local Digest = nil;
-    local inputKeyMaterial = nil;
-    local salt = nil;
-    local info = nil;
-    local outputLen = nil;
+    local inputKeyMaterial;
+    local salt = Array.fromHex("0000000000000000000000000000000000000000");
+    local info;
+    local outputLen;
 
-    local hashLen = nil;
-    local secret = nil;
+    local hashLen;
+    local secret;
 
     local extract = function()
         local res = HMAC()
@@ -71,7 +71,7 @@ local HKDF = function()
     end
 
     public.setSalt = function(s)
-        salt = s;
+        salt = s or salt;
         return public;
     end
 
@@ -86,9 +86,6 @@ local HKDF = function()
     end
 
     public.finish = function()
-        if not salt then
-            salt = Array.fromHex("0000000000000000000000000000000000000000");
-        end
         local prk = extract(salt, inputKeyMaterial);
         secret = expand(prk, info, outputLength);
         return public;
@@ -99,15 +96,10 @@ local HKDF = function()
     end
 
     public.asHex = function()
-        local hex = "";
-        for i = 1, #secret do
-           hex = hex .. string.format("%02x", secret[i])
-        end
-        return hex;
+        return Array.toHex(secret);
     end
 
     return public;
 end
 
 return HKDF;
-
