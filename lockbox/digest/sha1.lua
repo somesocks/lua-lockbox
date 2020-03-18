@@ -44,9 +44,9 @@ local dword2bytes = function(i)
     return b0, b1, b2, b3, b4, b5, b6, b7;
 end
 
-local F = function(x, y, z) return OR(AND(x, y), AND(NOT(x), z)); end
+local F = function(x, y, z) return XOR(z, AND(x, XOR(y, z))); end
 local G = function(x, y, z) return XOR(x, XOR(y, z)); end
-local H = function(x, y, z) return OR(AND(x, y), OR(AND(x, z), AND(y, z)));end
+local H = function(x, y, z) return OR(AND(x, OR(y, z)), AND(y, z)); end
 local I = function(x, y, z) return XOR(x, XOR(y, z)); end
 
 local SHA1 = function()
@@ -80,16 +80,16 @@ local SHA1 = function()
         end
 
         for i = 0, 79 do
-            if (0 <= i) and (i <= 19) then
+            if (i <= 19) then
                 temp = F(b, c, d);
                 k = 0x5A827999;
-            elseif (20 <= i) and (i <= 39) then
+            elseif (i <= 39) then
                 temp = G(b, c, d);
                 k = 0x6ED9EBA1;
-            elseif (40 <= i) and (i <= 59) then
+            elseif (i <= 59) then
                 temp = H(b, c, d);
                 k = 0x8F1BBCDC;
-            elseif (60 <= i) and (i <= 79) then
+            else
                 temp = I(b, c, d);
                 k = 0xCA62C1D6;
             end
