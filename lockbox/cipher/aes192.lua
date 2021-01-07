@@ -1,18 +1,8 @@
-local Stream = require("lockbox.util.stream");
+
 local Array = require("lockbox.util.array");
-
 local Bit = require("lockbox.util.bit");
-local Math = require("math");
 
-
-local AND = Bit.band;
-local OR  = Bit.bor;
-local NOT = Bit.bnot;
 local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
-local LSHIFT = Bit.lshift;
-local RSHIFT = Bit.rshift;
 
 local SBOX = {
  [0] = 0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,
@@ -306,9 +296,9 @@ local AES = {};
 
 AES.blockSize = 16;
 
-AES.encrypt = function(key, block)
+AES.encrypt = function(_key, block)
 
-    local key = keyExpand(key);
+    local key = keyExpand(_key);
 
     --round 0
     block = addKey(block, key[1]);
@@ -388,9 +378,9 @@ AES.encrypt = function(key, block)
 
 end
 
-AES.decrypt = function(key, block)
+AES.decrypt = function(_key, block)
 
-    local key = keyExpand(key);
+    local key = keyExpand(_key);
 
     --round 0
     block = addKey(block, key[13]);

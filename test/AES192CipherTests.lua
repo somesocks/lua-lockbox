@@ -9,7 +9,6 @@ local CFBMode = require("lockbox.cipher.mode.cfb");
 local OFBMode = require("lockbox.cipher.mode.ofb");
 local CTRMode = require("lockbox.cipher.mode.ctr");
 
-local PKCS7Padding = require("lockbox.padding.pkcs7");
 local ZeroPadding = require("lockbox.padding.zero");
 
 local AES192Cipher = require("lockbox.cipher.aes192");
@@ -172,15 +171,17 @@ local testVectors = {
         decipher = CTRMode.Decipher,
         key = Array.fromHex("8e73b0f7da0e6452c810f32b809079e562f8ead2522c6b7b"),
         iv = Array.fromHex("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff"),
-        plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172aae2d8a571e03ac9c9eb76fac45af8e5130c81c46a35ce411e5fbc1191a0a52eff69f2445df4f9b17ad2b417be66c3710"),
-        ciphertext = Array.fromHex("1abc932417521ca24f2b0459fe7e6e0b090339ec0aa6faefd5ccc2c6f4ce8e941e36b26bd1ebc670d1bd1d665620abf74f78a7f6d29809585a97daec58c6b050"),
+        plaintext = Array.fromHex("6bc1bee22e409f96e93d7e117393172aae2d8a571e03ac9c9eb76fac45a" ..
+                                  "f8e5130c81c46a35ce411e5fbc1191a0a52eff69f2445df4f9b17ad2b417be66c3710"),
+        ciphertext = Array.fromHex("1abc932417521ca24f2b0459fe7e6e0b090339ec0aa6faefd5ccc2c6f4" ..
+                                   "ce8e941e36b26bd1ebc670d1bd1d665620abf74f78a7f6d29809585a97daec58c6b050"),
         padding = ZeroPadding
     },
 
 
 };
 
-for k, v in pairs(testVectors) do
+for _, v in pairs(testVectors) do
     local cipher = v.cipher()
             .setKey(v.key)
             .setBlockCipher(AES192Cipher)

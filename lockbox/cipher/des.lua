@@ -1,6 +1,5 @@
 require("lockbox").insecure();
 
-local Stream = require("lockbox.util.stream");
 local Array = require("lockbox.util.array");
 
 local Bit = require("lockbox.util.bit");
@@ -9,10 +8,7 @@ local Math = require("math");
 
 local AND = Bit.band;
 local OR  = Bit.bor;
-local NOT = Bit.bnot;
 local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
@@ -84,16 +80,6 @@ local KS14 = KS3;
 local KS15 = KS3;
 local KS16 = KS1;
 
-
-local SIND1 = {      2,      3,      4,      5,      1,      6 };
-local SIND2 = {  2 + 6,  3 + 6,  4 + 6,  5 + 6,  1 + 6,  6 + 6 };
-local SIND3 = { 2 + 12, 3 + 12, 4 + 12, 5 + 12, 1 + 12, 6 + 12 };
-local SIND4 = { 2 + 18, 3 + 18, 4 + 18, 5 + 18, 1 + 18, 6 + 18 };
-local SIND5 = { 2 + 24, 3 + 24, 4 + 24, 5 + 24, 1 + 24, 6 + 24 };
-local SIND6 = { 2 + 30, 3 + 30, 4 + 30, 5 + 30, 1 + 30, 6 + 30 };
-local SIND7 = { 2 + 36, 3 + 36, 4 + 36, 5 + 36, 1 + 36, 6 + 36 };
-local SIND8 = { 2 + 42, 3 + 42, 4 + 42, 5 + 42, 1 + 42, 6 + 42 };
-
 local SBOX1 = { 14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7,
                 0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8,
                 4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0,
@@ -142,7 +128,7 @@ local permute = Array.permute;
 local unpackBytes = function(bytes)
     local bits = {};
 
-    for k, b in pairs(bytes) do
+    for _, b in pairs(bytes) do
         table.insert(bits, RSHIFT(AND(b, 0x80), 7));
         table.insert(bits, RSHIFT(AND(b, 0x40), 6));
         table.insert(bits, RSHIFT(AND(b, 0x20), 5));
@@ -159,7 +145,7 @@ end
 local packBytes = function(bits)
     local bytes = {}
 
-    for k, v in pairs(bits) do
+    for k, _ in pairs(bits) do
         local index = Math.floor((k - 1) / 8) + 1;
         local shift = 7 - Math.fmod((k - 1), 8);
 
@@ -178,7 +164,7 @@ local mix = function(LR, key)
 
     local ER = permute(LR, EBIT);
 
-    for k, v in pairs(ER) do
+    for k, _ in pairs(ER) do
         ER[k] = XOR(ER[k], key[k]);
     end
 
@@ -343,68 +329,67 @@ DES.encrypt = function(keyBlock, inputBlock)
 
     --rounds
     local frk = mix(LR, KEY1);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY2);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY3);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY4);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY5);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY6);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY7);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY8);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY9);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY10);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY11);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY12);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY13);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY14);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY15);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY16);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
-    --LR = permute(LR,LR_SWAP);
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
 
     --output permutation
     LR = permute(LR, OUT_P);
@@ -445,68 +430,67 @@ DES.decrypt = function(keyBlock, inputBlock)
 
     --rounds
     local frk = mix(LR, KEY16);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY15);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY14);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY13);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY12);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY11);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY10);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY9);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY8);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY7);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY6);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY5);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY4);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY3);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY2);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
     LR = permute(LR, LR_SWAP);
 
     frk = mix(LR, KEY1);
-    for k, v in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
-    --LR = permute(LR,LR_SWAP);
+    for k, _ in pairs(frk) do LR[k] = XOR(LR[k], frk[k]); end
 
     --output permutation
     LR = permute(LR, OUT_P);

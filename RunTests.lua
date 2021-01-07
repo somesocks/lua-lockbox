@@ -27,7 +27,7 @@ local tests = {
 
 local status = 0
 
-for k, v in pairs(tests) do
+for _, v in pairs(tests) do
     print(String.format("Running %s...", v));
     local ok, err = pcall(require, "test." .. v);
     if not ok then

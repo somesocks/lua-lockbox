@@ -2,9 +2,7 @@ local PBKDF2 = require("lockbox.kdf.pbkdf2");
 local HMAC = require("lockbox.mac.hmac");
 local SHA1 = require("lockbox.digest.sha1");
 
-local Bit = require("lockbox.util.bit");
 local String = require("string");
-local Stream = require("lockbox.util.stream");
 local Array = require("lockbox.util.array");
 
 local tests = {
@@ -38,7 +36,7 @@ local tests = {
 
 };
 
-for k, v in pairs(tests) do
+for _, v in pairs(tests) do
     local res = PBKDF2()
             .setPRF(v.prf)
             .setBlockLen(v.blockLen)

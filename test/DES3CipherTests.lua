@@ -222,7 +222,7 @@ local testVectors = {
 
 };
 
-for k, v in pairs(testVectors) do
+for _, v in pairs(testVectors) do
 
     local cipher = v.mode.Cipher()
             .setKey(v.key)
@@ -244,7 +244,7 @@ for k, v in pairs(testVectors) do
             .setBlockCipher(DES3Cipher)
             .setPadding(v.padding);
 
-    local res = decipher
+    res = decipher
                 .init()
                 .update(Stream.fromArray(v.iv))
                 .update(Stream.fromArray(v.ciphertext))
@@ -252,6 +252,7 @@ for k, v in pairs(testVectors) do
                 .asBytes();
 
     assert(Array.toHex(res) == Array.toHex(v.plaintext),
-            String.format("test failed! DES decrypt expected(%s) got(%s)", Array.toString(v.plaintext), Array.toString(res)));
+            String.format("test failed! DES decrypt expected(%s) got(%s)",
+            Array.toString(v.plaintext), Array.toString(res)));
 
 end

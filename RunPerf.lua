@@ -1,4 +1,4 @@
---[[ 
+--[[
   Lockbox - crude performance tests
 
   Based off of test_perf.lua from https://github.com/philanc/plc
@@ -49,7 +49,7 @@ local function perf_digest(dig)
     local m = plain
 
     start(dig)
-    local hash = algo().update( Stream.fromString(m) ).finish()
+    algo().update( Stream.fromString(m) ).finish()
     done()
 end
 
@@ -65,7 +65,7 @@ local function perf_hmacdigest(dig)
 
     start("hmac_" .. dig)
     hmac = hmac().setBlockSize(64).setDigest(algo).setKey(key)
-    local hash = hmac.update( Stream.fromString(m) ).finish()
+    hmac.update( Stream.fromString(m) ).finish()
     done()
 end
 
@@ -109,7 +109,7 @@ local function perf_blockcipher(algo, mode, padding, params)
                       .setPadding(padding)
                       .setKey(key)
 
-    plaintext = decipher.init()
+    local plaintext = decipher.init()
                       .update( Stream.fromArray( iv ) )
                       .update( Stream.fromHex(ciphertext) )
                       .finish()

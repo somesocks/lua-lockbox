@@ -1,4 +1,5 @@
 local ok, e
+ok = nil
 if not ok then
     ok, e = pcall(require, "bit") -- the LuaJIT one ?
 end

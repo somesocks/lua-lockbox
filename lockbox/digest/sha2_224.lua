@@ -13,11 +13,13 @@ local CONSTANTS = {
    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2  };
 
+local fmt = "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x" ..
+            "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+
 local AND = Bit.band;
 local OR  = Bit.bor;
 local NOT = Bit.bnot;
 local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
 local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
@@ -38,12 +40,6 @@ local word2bytes = function(word)
     b1 = AND(word, 0xFF); word = RSHIFT(word, 8);
     b0 = AND(word, 0xFF);
     return b0, b1, b2, b3;
-end
-
-local bytes2dword = function(b0, b1, b2, b3, b4, b5, b6, b7)
-    local i = bytes2word(b0, b1, b2, b3);
-    local j = bytes2word(b4, b5, b6, b7);
-    return (i * 0x100000000) + j;
 end
 
 local dword2bytes = function(i)
@@ -191,8 +187,6 @@ local SHA2_224 = function()
         local b16, b17, b18, b19 = word2bytes(h4);
         local b20, b21, b22, b23 = word2bytes(h5);
         local b24, b25, b26, b27 = word2bytes(h6);
-
-        local fmt = "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
 
         return String.format(fmt, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15
                 , b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27);

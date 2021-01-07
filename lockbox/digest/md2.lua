@@ -22,14 +22,7 @@ local SUBST = {
   0xF2, 0xEF, 0xB7, 0x0E, 0x66, 0x58, 0xD0, 0xE4, 0xA6, 0x77, 0x72, 0xF8, 0xEB, 0x75, 0x4B, 0x0A,
   0x31, 0x44, 0x50, 0xB4, 0x8F, 0xED, 0x1F, 0x1A, 0xDB, 0x99, 0x8D, 0x33, 0x9F, 0x11, 0x83, 0x14 };
 
-local AND = Bit.band;
-local OR  = Bit.bor;
-local NOT = Bit.bnot;
 local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
-local LSHIFT = Bit.lshift;
-local RSHIFT = Bit.rshift;
 
 local MD2 = function()
 
@@ -40,7 +33,6 @@ local MD2 = function()
         X[i] = 0x00;
     end
 
-    local L = 0;
     local C = {};
     for i = 0, 15 do
         C[i] = 0x00;
@@ -89,7 +81,6 @@ local MD2 = function()
             X[i] = 0x00;
         end
 
-        L = 0;
         C = {};
         for i = 0, 15 do
             C[i] = 0x00;

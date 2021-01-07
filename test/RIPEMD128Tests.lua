@@ -11,7 +11,8 @@ test["message digest"] = "9e327b3d6e523062afc1132d7df9d1b8";
 test["abcdefghijklmnopqrstuvwxyz"] = "fd2aa607f71dc8f510714922b371834e";
 test["abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"] = "a1aa0689d0fafa2ddc22e88b49133a06";
 test["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"] = "d1e959eb179c911faea4624c60c5c702";
-test["12345678901234567890123456789012345678901234567890123456789012345678901234567890"] = "3f45ef194732c2dbb2c4a2c769795fa3";
+test["12345678901234567890123456789012345678901234567890123456789012345678901234567890"] =
+"3f45ef194732c2dbb2c4a2c769795fa3";
 
 for k, v in pairs(test) do
     local message = k;
@@ -21,6 +22,7 @@ for k, v in pairs(test) do
                     .finish()
                     .asHex();
 
-    assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)", message, expected, actual));
+    assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)",
+    message, expected, actual));
 
 end

@@ -1,15 +1,11 @@
 local String = require("string");
 local Bit = require("lockbox.util.bit");
 
-local Array = require("lockbox.util.array");
 local Stream = require("lockbox.util.stream");
 
 local AND = Bit.band;
 local OR  = Bit.bor;
 local NOT = Bit.bnot;
-local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
@@ -102,7 +98,6 @@ Base64.toStream = function(base64)
       end
     end)
 
-    local resume = coroutine.resume;
     local status = coroutine.status;
 
     return function()

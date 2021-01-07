@@ -1,9 +1,6 @@
-local Bit = require("lockbox.util.bit");
 local String = require("string");
 local Stream = require("lockbox.util.stream");
 local Array = require("lockbox.util.array");
-
-local Queue = require("lockbox.util.queue");
 
 local HMAC = require("lockbox.mac.hmac");
 
@@ -256,7 +253,9 @@ local tests = {
                 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
                 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
                 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa},
-        message = Stream.fromString("This is a test using a larger than block-size key and a larger than block-size data. The key needs to be hashed before being used by the HMAC algorithm."),
+        message = Stream.fromString("This is a test using a larger than block-size key and a larger than" ..
+                                    " block-size data. The key needs to be hashed before being used by the" ..
+                                    " HMAC algorithm."),
         hmac = "3a854166ac5d9f023f54d517d0b39dbd946770db9c2b95c9f6f565d1"
     },
 
@@ -346,7 +345,9 @@ local tests = {
                 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
                 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
                 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa},
-        message = Stream.fromString("This is a test using a larger than block-size key and a larger than block-size data. The key needs to be hashed before being used by the HMAC algorithm."),
+        message = Stream.fromString("This is a test using a larger than block-size key and a larger than" ..
+                                    " block-size data. The key needs to be hashed before being used by the" ..
+                                    " HMAC algorithm."),
         hmac = "9b09ffa71b942fcb27635fbcd5b0e944bfdc63644f0713938a7f51535c3a35e2"
     },
 
@@ -354,7 +355,7 @@ local tests = {
 
 local hash = HMAC();
 
-for k, v in pairs(tests) do
+for _, v in pairs(tests) do
     local res = hash
                 .setBlockSize(v.blockSize)
                 .setDigest(v.digest)

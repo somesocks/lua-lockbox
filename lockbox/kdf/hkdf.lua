@@ -87,7 +87,7 @@ local HKDF = function()
 
     public.finish = function()
         local prk = extract(salt, inputKeyMaterial);
-        secret = expand(prk, info, outputLength);
+        secret = expand(prk, info);
         return public;
     end
 

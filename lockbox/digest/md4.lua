@@ -5,20 +5,11 @@ local String = require("string");
 local Math = require("math");
 local Queue = require("lockbox.util.queue");
 
-local SHIFT = { 3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19,  3,  7, 11, 19,
-                3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13,  3,  5,  9, 13,
-                3,  9, 11, 15,  3,  9, 11, 15,  3,  9, 11, 15,  3,  9, 11, 15 };
-
-local WORD = {  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
-                0,  4,  8, 12,  1,  5,  9, 13,  2,  6, 10, 14,  3,  7, 11, 13,
-                3,  8,  4, 12,  2, 10,  6, 14,  1,  9,  5, 13,  3,  1,  7, 15 };
-
 local AND = Bit.band;
 local OR  = Bit.bor;
 local NOT = Bit.bnot;
 local XOR = Bit.bxor;
 local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
@@ -38,12 +29,6 @@ local word2bytes = function(word)
     b2 = AND(word, 0xFF); word = RSHIFT(word, 8);
     b3 = AND(word, 0xFF);
     return b0, b1, b2, b3;
-end
-
-local bytes2dword = function(b0, b1, b2, b3, b4, b5, b6, b7)
-    local i = bytes2word(b0, b1, b2, b3);
-    local j = bytes2word(b4, b5, b6, b7);
-    return (j * 0x100000000) + i;
 end
 
 local dword2bytes = function(i)

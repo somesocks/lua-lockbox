@@ -1,6 +1,7 @@
 
 local String = require("string");
 local Bit = require("lockbox.util.bit");
+local Queue = require("lockbox.util.queue");
 
 local XOR = Bit.bxor;
 
@@ -137,8 +138,8 @@ Array.concat = function(a, b)
         byte = a[i];
     end
 
-    local i = 1;
-    local byte = b[i];
+    i = 1;
+    byte = b[i];
     while byte ~= nil do
         concat[out] = byte;
         i = i + 1;
