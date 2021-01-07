@@ -1,18 +1,10 @@
 require("lockbox").insecure();
 
-local Stream = require("lockbox.util.stream");
-local Array = require("lockbox.util.array");
-
-local String = require("string");
 local Bit = require("lockbox.util.bit");
-local Math = require("math");
 
 local AND = Bit.band;
 local OR  = Bit.bor;
-local NOT = Bit.bnot;
 local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
@@ -52,7 +44,7 @@ TEA.encrypt = function(key, data)
     local k2 = bytes2word(key[ 9], key[10], key[11], key[12]);
     local k3 = bytes2word(key[13], key[14], key[15], key[16]);
 
-    for i = 1, 32 do
+    for _ = 1, 32 do
         local temp;
 
         sum = AND(sum + delta, 0xFFFFFFFF);
@@ -88,7 +80,7 @@ TEA.decrypt = function(key, data)
     local k2 = bytes2word(key[ 9], key[10], key[11], key[12]);
     local k3 = bytes2word(key[13], key[14], key[15], key[16]);
 
-    for i = 1, 32 do
+    for _ = 1, 32 do
         local temp;
 
         temp = y + sum;

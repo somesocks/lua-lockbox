@@ -34,7 +34,6 @@ local OR  = Bit.bor;
 local NOT = Bit.bnot;
 local XOR = Bit.bxor;
 local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
@@ -54,12 +53,6 @@ local word2bytes = function(word)
     b2 = AND(word, 0xFF); word = RSHIFT(word, 8);
     b3 = AND(word, 0xFF);
     return b0, b1, b2, b3;
-end
-
-local bytes2dword = function(b0, b1, b2, b3, b4, b5, b6, b7)
-    local i = bytes2word(b0, b1, b2, b3);
-    local j = bytes2word(b4, b5, b6, b7);
-    return (j * 0x100000000) + i;
 end
 
 local dword2bytes = function(i)

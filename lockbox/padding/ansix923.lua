@@ -1,5 +1,3 @@
-local Stream = require("lockbox.util.stream");
-
 local ANSIX923Padding = function(blockSize, byteCount)
 
     local paddingCount = blockSize - (byteCount % blockSize);

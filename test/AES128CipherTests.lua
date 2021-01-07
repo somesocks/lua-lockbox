@@ -10,7 +10,7 @@ local OFBMode = require("lockbox.cipher.mode.ofb");
 local CTRMode = require("lockbox.cipher.mode.ctr");
 local IGEMode = require("lockbox.cipher.mode.ige");
 
-local PKCS7Padding = require("lockbox.padding.pkcs7");
+
 local ZeroPadding = require("lockbox.padding.zero");
 
 local AES128Cipher = require("lockbox.cipher.aes128");
@@ -225,7 +225,7 @@ local testVectors = {
 
 };
 
-for k, v in pairs(testVectors) do
+for _, v in pairs(testVectors) do
     local cipher = v.cipher()
             .setKey(v.key)
             .setBlockCipher(AES128Cipher)

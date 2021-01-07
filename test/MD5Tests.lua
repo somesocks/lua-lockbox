@@ -17,7 +17,8 @@ for k, v in pairs(test) do
                     .finish()
                     .asHex();
 
-    assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)", message, expected, actual));
+    assert(actual == expected, String.format("Test failed! MESSAGE(%s) Expected(%s) Actual(%s)",
+    message, expected, actual));
 
 end
 

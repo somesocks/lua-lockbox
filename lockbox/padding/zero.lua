@@ -1,5 +1,3 @@
-local Stream = require("lockbox.util.stream");
-
 local ZeroPadding = function(blockSize, byteCount)
 
     local paddingCount = blockSize - ((byteCount -1) % blockSize) + 1;

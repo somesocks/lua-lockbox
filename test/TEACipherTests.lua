@@ -4,9 +4,7 @@ local Array = require("lockbox.util.array");
 local Stream = require("lockbox.util.stream");
 
 local ECBMode = require("lockbox.cipher.mode.ecb");
-local CBCMode = require("lockbox.cipher.mode.cbc");
 
-local PKCS7Padding = require("lockbox.padding.pkcs7");
 local ZeroPadding = require("lockbox.padding.zero");
 
 local TEACipher = require("lockbox.cipher.tea");
@@ -48,7 +46,7 @@ local testVectors = {
 
 };
 
-for k, v in pairs(testVectors) do
+for _, v in pairs(testVectors) do
 
     local cipher = v.mode.Cipher()
             .setKey(v.key)

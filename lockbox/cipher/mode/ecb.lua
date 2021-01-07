@@ -4,9 +4,6 @@ local Array = require("lockbox.util.array");
 local Stream = require("lockbox.util.stream");
 local Queue = require("lockbox.util.queue");
 
-local String = require("string");
-local Bit = require("lockbox.util.bit");
-
 local ECB = {};
 
 ECB.Cipher = function()
@@ -57,7 +54,7 @@ ECB.Cipher = function()
     end
 
     public.finish = function()
-        paddingStream = padding(blockCipher.blockSize, inputQueue.getHead());
+        local paddingStream = padding(blockCipher.blockSize, inputQueue.getHead());
         public.update(paddingStream);
 
         return public;
@@ -127,7 +124,7 @@ ECB.Decipher = function()
     end
 
     public.finish = function()
-        paddingStream = padding(blockCipher.blockSize, inputQueue.getHead());
+        local paddingStream = padding(blockCipher.blockSize, inputQueue.getHead());
         public.update(paddingStream);
 
         return public;

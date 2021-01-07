@@ -1,18 +1,10 @@
 require("lockbox").insecure();
 
-local Stream = require("lockbox.util.stream");
-local Array = require("lockbox.util.array");
-
-local String = require("string");
 local Bit = require("lockbox.util.bit");
-local Math = require("math");
 
 local AND = Bit.band;
 local OR  = Bit.bor;
-local NOT = Bit.bnot;
 local XOR = Bit.bxor;
-local LROT = Bit.lrotate;
-local RROT = Bit.rrotate;
 local LSHIFT = Bit.lshift;
 local RSHIFT = Bit.rshift;
 
@@ -53,7 +45,7 @@ XTEA.encrypt = function(key, data)
     local k3 = bytes2word(key[13], key[14], key[15], key[16]);
     local k = {[0] = k0, k1, k2, k3};
 
-    for i = 1, 32 do
+    for _ = 1, 32 do
         local temp;
 
         temp = XOR(LSHIFT(z, 4), RSHIFT(z, 5)) + z
@@ -88,7 +80,7 @@ XTEA.decrypt = function(key, data)
     local k3 = bytes2word(key[13], key[14], key[15], key[16]);
     local k = {[0] = k0, k1, k2, k3};
 
-    for i = 1, 32 do
+    for _ = 1, 32 do
         local temp;
 
         temp = XOR(LSHIFT(y, 4), RSHIFT(y, 5)) + y
