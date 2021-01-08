@@ -3,5 +3,7 @@ include_files = {
 }
 
 exclude_files = {
-    ".env/**/*.lua",
+    ".*/**/*.*",
+    ".lua/bin/lua",
+    ".lua/bin/luac",
 }
