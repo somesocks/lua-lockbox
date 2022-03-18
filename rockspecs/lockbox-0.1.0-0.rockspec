@@ -1,7 +1,7 @@
 package = "lockbox"
 version = "0.1.0-0"
 source = {
-	url = "git://github.com/somesocks/lua-lockbox.git",
+	url = "git+https://github.com/somesocks/lua-lockbox.git",
 	tag = "0.1.0"
 }
 description = {
