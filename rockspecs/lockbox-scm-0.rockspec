@@ -1,7 +1,7 @@
 package = "lockbox"
 version = "scm-0"
 
-source = { url = "git://github.com/somesocks/lua-lockbox.git" }
+source = { url = "git+https://github.com/somesocks/lua-lockbox.git" }
 
 description = {
   summary = "A collection of cryptographic primitives written in pure Lua",
