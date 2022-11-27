@@ -82,6 +82,10 @@ IGE.Cipher = function()
         return Stream.toArray(outputQueue.pop);
     end
 
+    public.asString = function()
+        return Stream.toString(outputQueue.pop);
+    end
+
     return public;
 
 end
@@ -162,6 +166,10 @@ IGE.Decipher = function()
 
     public.asBytes = function()
         return Stream.toArray(outputQueue.pop);
+    end
+
+    public.asString = function()
+        return Stream.toString(outputQueue.pop);
     end
 
     return public;

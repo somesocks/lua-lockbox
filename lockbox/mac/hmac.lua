@@ -78,6 +78,10 @@ local HMAC = function()
         return digest.asHex();
     end
 
+    public.asString = function()
+        return digest.asString();
+    end
+
     return public;
 
 end

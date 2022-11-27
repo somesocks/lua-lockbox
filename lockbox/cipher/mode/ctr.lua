@@ -120,6 +120,10 @@ CTR.Cipher = function()
         return Stream.toArray(outputQueue.pop);
     end
 
+    public.asString = function()
+        return Stream.toString(outputQueue.pop);
+    end
+
     return public;
 
 end
@@ -235,6 +239,10 @@ CTR.Decipher = function()
 
     public.asBytes = function()
         return Stream.toArray(outputQueue.pop);
+    end
+
+    public.asString = function()
+        return Stream.toString(outputQueue.pop);
     end
 
     return public;

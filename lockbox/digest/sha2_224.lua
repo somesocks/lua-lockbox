@@ -192,6 +192,20 @@ local SHA2_224 = function()
                 , b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27);
     end
 
+    public.asString = function()
+        local  b0, b1, b2, b3 = word2bytes(h0);
+        local  b4, b5, b6, b7 = word2bytes(h1);
+        local  b8, b9, b10, b11 = word2bytes(h2);
+        local b12, b13, b14, b15 = word2bytes(h3);
+        local b16, b17, b18, b19 = word2bytes(h4);
+        local b20, b21, b22, b23 = word2bytes(h5);
+        local b24, b25, b26, b27 = word2bytes(h6);
+
+        return string.pack(string.rep('B', 28),
+            b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13,
+            b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27);
+    end
+
     return public;
 
 end
