@@ -308,9 +308,9 @@ local AES = {};
 
 AES.blockSize = 16;
 
-AES.encrypt = function(_key, block)
+AES.encrypt = function(seed, block)
 
-    local key = keyExpand(_key);
+    local key = keyExpand(seed);
 
     --round 0
     block = addKey(block, key[1]);
@@ -402,9 +402,9 @@ AES.encrypt = function(_key, block)
 
 end
 
-AES.decrypt = function(_key, block)
+AES.decrypt = function(seed, block)
 
-    local key = keyExpand(_key);
+    local key = keyExpand(seed);
 
     --round 0
     block = addKey(block, key[15]);
