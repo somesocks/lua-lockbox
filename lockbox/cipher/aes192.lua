@@ -296,165 +296,165 @@ local AES = {};
 
 AES.blockSize = 16;
 
-AES.encrypt = function(seed, block)
+AES.encrypt = function(key, block)
 
-    local key = keyExpand(seed);
+    local keySchedule = keyExpand(key);
 
     --round 0
-    block = addKey(block, key[1]);
+    block = addKey(block, keySchedule[1]);
 
     --round 1
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[2]);
+    block = addKey(block, keySchedule[2]);
 
     --round 2
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[3]);
+    block = addKey(block, keySchedule[3]);
 
     --round 3
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[4]);
+    block = addKey(block, keySchedule[4]);
 
     --round 4
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[5]);
+    block = addKey(block, keySchedule[5]);
 
     --round 5
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[6]);
+    block = addKey(block, keySchedule[6]);
 
     --round 6
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[7]);
+    block = addKey(block, keySchedule[7]);
 
     --round 7
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[8]);
+    block = addKey(block, keySchedule[8]);
 
     --round 8
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[9]);
+    block = addKey(block, keySchedule[9]);
 
     --round 9
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[10]);
+    block = addKey(block, keySchedule[10]);
 
     --round 10
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[11]);
+    block = addKey(block, keySchedule[11]);
 
     --round 11
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
     block = mixCol(block, MIXTABLE);
-    block = addKey(block, key[12]);
+    block = addKey(block, keySchedule[12]);
 
     --round 12
     block = byteSub(block, SBOX);
     block = shiftRow(block, ROW_SHIFT);
-    block = addKey(block, key[13]);
+    block = addKey(block, keySchedule[13]);
 
     return block;
 
 end
 
-AES.decrypt = function(seed, block)
+AES.decrypt = function(key, block)
 
-    local key = keyExpand(seed);
+    local keySchedule = keyExpand(key);
 
     --round 0
-    block = addKey(block, key[13]);
+    block = addKey(block, keySchedule[13]);
 
     --round 1
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[12]);
+    block = addKey(block, keySchedule[12]);
     block = mixCol(block, IMIXTABLE);
 
     --round 2
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[11]);
+    block = addKey(block, keySchedule[11]);
     block = mixCol(block, IMIXTABLE);
 
     --round 3
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[10]);
+    block = addKey(block, keySchedule[10]);
     block = mixCol(block, IMIXTABLE);
 
     --round 4
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[9]);
+    block = addKey(block, keySchedule[9]);
     block = mixCol(block, IMIXTABLE);
 
     --round 5
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[8]);
+    block = addKey(block, keySchedule[8]);
     block = mixCol(block, IMIXTABLE);
 
     --round 6
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[7]);
+    block = addKey(block, keySchedule[7]);
     block = mixCol(block, IMIXTABLE);
 
     --round 7
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[6]);
+    block = addKey(block, keySchedule[6]);
     block = mixCol(block, IMIXTABLE);
 
     --round 8
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[5]);
+    block = addKey(block, keySchedule[5]);
     block = mixCol(block, IMIXTABLE);
 
     --round 9
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[4]);
+    block = addKey(block, keySchedule[4]);
     block = mixCol(block, IMIXTABLE);
 
     --round 10
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[3]);
+    block = addKey(block, keySchedule[3]);
     block = mixCol(block, IMIXTABLE);
 
     --round 11
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[2]);
+    block = addKey(block, keySchedule[2]);
     block = mixCol(block, IMIXTABLE);
 
     --round 12
     block = shiftRow(block, IROW_SHIFT);
     block = byteSub(block, ISBOX);
-    block = addKey(block, key[1]);
+    block = addKey(block, keySchedule[1]);
 
     return block;
 end
