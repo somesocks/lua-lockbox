@@ -72,6 +72,10 @@ ECB.Cipher = function()
         return Stream.toArray(outputQueue.pop);
     end
 
+    public.asString = function()
+        return Stream.toString(outputQueue.pop);
+    end
+
     return public;
 
 end
@@ -140,6 +144,10 @@ ECB.Decipher = function()
 
     public.asBytes = function()
         return Stream.toArray(outputQueue.pop);
+    end
+
+    public.asString = function()
+        return Stream.toString(outputQueue.pop);
     end
 
     return public;

@@ -108,6 +108,10 @@ local PBKDF2 = function()
         return Array.toHex(dKey);
     end
 
+    public.asString = function()
+        return Array.toString(dKey);
+    end
+
     return public;
 end
 

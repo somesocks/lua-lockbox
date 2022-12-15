@@ -386,6 +386,18 @@ local RIPEMD160 = function()
                 b10, b11, b12, b13, b14, b15, b16, b17, b18, b19);
     end
 
+    public.asString = function()
+        local  b0, b1, b2, b3 = word2bytes(A);
+        local  b4, b5, b6, b7 = word2bytes(B);
+        local  b8, b9, b10, b11 = word2bytes(C);
+        local b12, b13, b14, b15 = word2bytes(D);
+        local b16, b17, b18, b19 = word2bytes(E);
+
+        return string.pack(string.rep('B', 20),
+                 b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,
+                b10, b11, b12, b13, b14, b15, b16, b17, b18, b19);
+    end
+
     return public;
 
 end

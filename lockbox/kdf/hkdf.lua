@@ -99,6 +99,10 @@ local HKDF = function()
         return Array.toHex(secret);
     end
 
+    public.asString = function()
+        return Array.toString(secret);
+    end
+
     return public;
 end
 

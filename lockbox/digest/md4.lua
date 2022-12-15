@@ -198,6 +198,16 @@ local MD4 = function()
                 b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15);
     end
 
+    public.asString = function()
+        local  b0, b1, b2, b3 = word2bytes(A);
+        local  b4, b5, b6, b7 = word2bytes(B);
+        local  b8, b9, b10, b11 = word2bytes(C);
+        local b12, b13, b14, b15 = word2bytes(D);
+
+        return string.pack(string.rep('B', 16),
+                b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15);
+    end
+
     return public;
 
 end
