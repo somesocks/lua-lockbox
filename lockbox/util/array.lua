@@ -202,9 +202,21 @@ end
 Array.slice = function(input, start, stop)
     local out = {};
 
-    for i = start, stop do
-        out[i - start + 1] = input[i];
+    if start == nil then
+        start = 1
+    elseif start < 0 then
+        start = #input + start + 1
     end
+    if stop == nil then
+        stop = #input
+    elseif stop < 0 then
+        stop = #input + stop + 1
+    end
+
+    for i = start, stop do
+        table.insert(out, input[i])
+    end
+
     return out;
 end
 
