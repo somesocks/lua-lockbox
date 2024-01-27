@@ -33,12 +33,12 @@ if not e.ror and not e.rrotate then
 end
 
 if not e.rol and not e.lrotate then
-    local ror = function(b, n)
+    local rol = function(b, n)
         return e.bor(e.lshift(b, n), e.rshift(b, 32 - n))
     end
 
-    e.rol = ror
-    e.lrotate = ror
+    e.rol = rol
+    e.lrotate = rol
 end
 
 return e
